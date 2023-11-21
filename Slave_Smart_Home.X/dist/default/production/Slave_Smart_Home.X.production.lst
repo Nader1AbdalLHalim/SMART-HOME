@@ -1,0 +1,3274 @@
+
+
+Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
+                                                                                               Tue Nov 21 12:41:44 2023
+
+Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
+     1                           	processor	18F46K20
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text9,global,reloc=2,class=CODE,delta=1,inline
+    18                           	psect	text10,global,reloc=2,class=CODE,delta=1,inline
+    19                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text14,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text15,global,reloc=2,class=CODE,delta=1,inline
+    24                           	psect	text16,global,reloc=2,class=CODE,delta=1,inline
+    25                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    26                           	psect	text18,global,reloc=2,class=CODE,delta=1
+    27                           	psect	text19,global,reloc=2,class=CODE,delta=1
+    28                           	psect	text20,global,reloc=2,class=CODE,delta=1
+    29                           	psect	text21,global,reloc=2,class=CODE,delta=1,inline
+    30                           	psect	text22,global,reloc=2,class=CODE,delta=1,inline
+    31                           	psect	text23,global,reloc=2,class=CODE,delta=1
+    32                           	psect	text24,global,reloc=2,class=CODE,delta=1
+    33                           	psect	text25,global,reloc=2,class=CODE,delta=1
+    34                           	psect	text26,global,reloc=2,class=CODE,delta=1,inline
+    35                           	psect	text27,global,reloc=2,class=CODE,delta=1,inline
+    36                           	psect	text28,global,reloc=2,class=CODE,delta=1,inline
+    37                           	psect	text29,global,reloc=2,class=CODE,delta=1,inline
+    38                           	psect	text30,global,reloc=2,class=CODE,delta=1,inline
+    39                           	psect	text31,global,reloc=2,class=CODE,delta=1
+    40                           	psect	text32,global,reloc=2,class=CODE,delta=1
+    41                           	psect	text33,global,reloc=2,class=CODE,delta=1,inline
+    42                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    43                           	psect	text34,global,reloc=2,class=CODE,delta=1,inline
+    44                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    45                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    46                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    47   000000                     
+    48                           ; Generated 09/02/2023 GMT
+    49                           ; 
+    50                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    51                           ; All rights reserved.
+    52                           ; 
+    53                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    54                           ; 
+    55                           ; Redistribution and use in source and binary forms, with or without modification, are
+    56                           ; permitted provided that the following conditions are met:
+    57                           ; 
+    58                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    59                           ;        conditions and the following disclaimer.
+    60                           ; 
+    61                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    62                           ;        of conditions and the following disclaimer in the documentation and/or other
+    63                           ;        materials provided with the distribution. Publication is not required when
+    64                           ;        this file is used in an embedded application.
+    65                           ; 
+    66                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    67                           ;        software without specific prior written permission.
+    68                           ; 
+    69                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    70                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    71                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    72                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    73                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    74                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    75                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    76                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    77                           ; 
+    78                           ; 
+    79                           ; Code-generator required, PIC18F46K20 Definitions
+    80                           ; 
+    81                           ; SFR Addresses
+    82   000000                     
+    83 ;; Function _I2C_SlaveDefWrColInterruptHandler is unused but had its address taken
+    84   000000                     
+    85 ;; Function _I2C_SlaveDefBusColInterruptHandler is unused but had its address taken
+    86   000000                     _SSPADD	set	4040
+    87   000000                     _TRISD	set	3989
+    88   000000                     _TRISC	set	3988
+    89   000000                     _TRISB	set	3987
+    90   000000                     _LATB	set	3978
+    91   000000                     _LATD	set	3980
+    92   000000                     _LATE	set	3981
+    93   000000                     _SSPBUF	set	4041
+    94   000000                     _SSPCON2bits	set	4037
+    95   000000                     _SSPSTATbits	set	4039
+    96   000000                     _SSPCON1bits	set	4038
+    97   000000                     _LATC	set	3979
+    98   000000                     _SSPMSK	set	3959
+    99   000000                     _WPUB	set	3964
+   100   000000                     _ANSEL	set	3966
+   101   000000                     _LATA	set	3977
+   102   000000                     _LATCbits	set	3979
+   103   000000                     _INTCONbits	set	4082
+   104   000000                     _RCONbits	set	4048
+   105   000000                     _OSCCON	set	4051
+   106   000000                     _INTCON2bits	set	4081
+   107   000000                     _TRISA	set	3986
+   108   000000                     _TRISE	set	3990
+   109   000000                     _OSCTUNE	set	3995
+   110   000000                     _ANSELH	set	3967
+   111   000000                     _PIE1bits	set	3997
+   112   000000                     _SSPCON2	set	4037
+   113   000000                     _SSPCON1	set	4038
+   114   000000                     _SSPSTAT	set	4039
+   115   000000                     _PIE2bits	set	4000
+   116   000000                     _PIR1bits	set	3998
+   117   000000                     _PIR2bits	set	4001
+   118                           
+   119                           ; #config settings
+   120                           
+   121                           	psect	cinit
+   122   0002F8                     __pcinit:
+   123                           	callstack 0
+   124   0002F8                     start_initialization:
+   125                           	callstack 0
+   126   0002F8                     __initialization:
+   127                           	callstack 0
+   128                           
+   129                           ; Clear objects allocated to COMRAM (17 bytes)
+   130   0002F8  EE00  F001         	lfsr	0,__pbssCOMRAM
+   131   0002FC  0E11               	movlw	17
+   132   0002FE                     clear_0:
+   133   0002FE  6AEE               	clrf	postinc0,c
+   134   000300  06E8               	decf	wreg,f,c
+   135   000302  E1FD               	bnz	clear_0
+   136   000304                     end_of_initialization:
+   137                           	callstack 0
+   138   000304                     __end_of__initialization:
+   139                           	callstack 0
+   140   000304  9019               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+   141   000306  9219               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   142   000308  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   143   00030A  6EF8               	movwf	tblptru,c
+   144   00030C  0100               	movlb	0
+   145   00030E  EFF2  F000         	goto	_main	;jump to C main() function
+   146                           
+   147                           	psect	bssCOMRAM
+   148   000001                     __pbssCOMRAM:
+   149                           	callstack 0
+   150   000001                     _I2C_SlaveWrColInterruptHandler:
+   151                           	callstack 0
+   152   000001                     	ds	2
+   153   000003                     _I2C_SlaveBusColInterruptHandler:
+   154                           	callstack 0
+   155   000003                     	ds	2
+   156   000005                     _I2C_SlaveAddrInterruptHandler:
+   157                           	callstack 0
+   158   000005                     	ds	2
+   159   000007                     _I2C_SlaveWrInterruptHandler:
+   160                           	callstack 0
+   161   000007                     	ds	2
+   162   000009                     _I2C_SlaveRdInterruptHandler:
+   163                           	callstack 0
+   164   000009                     	ds	2
+   165   00000B                     _MSSP_InterruptHandler:
+   166                           	callstack 0
+   167   00000B                     	ds	2
+   168   00000D                     _i2cSlaveState:
+   169                           	callstack 0
+   170   00000D                     	ds	1
+   171   00000E                     _i2cSlaveAddr:
+   172                           	callstack 0
+   173   00000E                     	ds	1
+   174   00000F                     _i2cRdData:
+   175                           	callstack 0
+   176   00000F                     	ds	1
+   177   000010                     _i2cWrData:
+   178                           	callstack 0
+   179   000010                     	ds	1
+   180   000011                     _receive_temp_val:
+   181                           	callstack 0
+   182   000011                     	ds	1
+   183                           
+   184                           	psect	cstackCOMRAM
+   185   000012                     __pcstackCOMRAM:
+   186                           	callstack 0
+   187   000012                     I2C_SlaveSendTxData@data:
+   188                           	callstack 0
+   189                           
+   190                           ; 1 bytes @ 0x0
+   191   000012                     	ds	1
+   192   000013                     ??_I2C_Isr:
+   193   000013                     
+   194                           ; 1 bytes @ 0x1
+   195   000013                     	ds	2
+   196   000015                     ??_INTERRUPT_InterruptManager:
+   197                           
+   198                           ; 1 bytes @ 0x3
+   199   000015                     	ds	2
+   200   000017                     I2C_SlaveSetSlaveAddr@slaveAddr:
+   201                           	callstack 0
+   202   000017                     I2C_SlaveSetSlaveMask@maskAddr:
+   203                           	callstack 0
+   204   000017                     I2C_SlaveSetIsrHandler@handler:
+   205                           	callstack 0
+   206   000017                     I2C_SlaveSetReadIntHandler@handler:
+   207                           	callstack 0
+   208   000017                     I2C_SlaveSetWriteIntHandler@handler:
+   209                           	callstack 0
+   210   000017                     I2C_SlaveSetAddrIntHandler@handler:
+   211                           	callstack 0
+   212   000017                     I2C_SlaveSetWrColIntHandler@handler:
+   213                           	callstack 0
+   214   000017                     I2C_SlaveSetBusColIntHandler@handler:
+   215                           	callstack 0
+   216                           
+   217                           ; 2 bytes @ 0x5
+   218   000017                     	ds	2
+   219   000019                     
+   220                           ; 1 bytes @ 0x7
+   221 ;;
+   222 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   223 ;;
+   224 ;; *************** function _main *****************
+   225 ;; Defined at:
+   226 ;;		line 6 in file "main.c"
+   227 ;; Parameters:    Size  Location     Type
+   228 ;;		None
+   229 ;; Auto vars:     Size  Location     Type
+   230 ;;		None
+   231 ;; Return value:  Size  Location     Type
+   232 ;;                  1    wreg      void 
+   233 ;; Registers used:
+   234 ;;		wreg, status,2, status,0, cstack
+   235 ;; Tracked objects:
+   236 ;;		On entry : 0/0
+   237 ;;		On exit  : 0/0
+   238 ;;		Unchanged: 0/0
+   239 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   240 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   241 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   242 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   243 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   244 ;;Total ram usage:        0 bytes
+   245 ;; Hardware stack levels required when called: 7
+   246 ;; This function calls:
+   247 ;;		_I2C_Open
+   248 ;;		_I2C_SlaveSetReadIntHandler
+   249 ;;		_SYSTEM_Initialize
+   250 ;; This function is called by:
+   251 ;;		Startup code after reset
+   252 ;; This function uses a non-reentrant model
+   253 ;;
+   254                           
+   255                           	psect	text0
+   256   0001E4                     __ptext0:
+   257                           	callstack 0
+   258   0001E4                     _main:
+   259                           	callstack 24
+   260   0001E4                     
+   261                           ;main.c: 9:     SYSTEM_Initialize();
+   262   0001E4  ECB1  F001         	call	_SYSTEM_Initialize	;wreg free
+   263   0001E8                     
+   264                           ;main.c: 13:     (INTCONbits.GIE = 1);
+   265   0001E8  8EF2               	bsf	242,7,c	;volatile
+   266   0001EA                     
+   267                           ;main.c: 18:     (INTCONbits.PEIE = 1);
+   268   0001EA  8CF2               	bsf	242,6,c	;volatile
+   269                           
+   270                           ;main.c: 20:     I2C_Open() ;
+   271   0001EC  ECC3  F000         	call	_I2C_Open	;wreg free
+   272                           
+   273                           ;main.c: 21:     I2C_SlaveSetReadIntHandler(I2C_Custom_SlaveReadHandler);
+   274   0001F0  0EFA               	movlw	low _I2C_Custom_SlaveReadHandler
+   275   0001F2  6E17               	movwf	I2C_SlaveSetReadIntHandler@handler^0,c
+   276   0001F4  0E03               	movlw	high _I2C_Custom_SlaveReadHandler
+   277   0001F6  6E18               	movwf	(I2C_SlaveSetReadIntHandler@handler+1)^0,c
+   278   0001F8  ECD1  F001         	call	_I2C_SlaveSetReadIntHandler	;wreg free
+   279   0001FC                     l1357:
+   280                           
+   281                           ;main.c: 25:     {;main.c: 26:          if( receive_temp_val > 35 )
+   282   0001FC  0E23               	movlw	35
+   283   0001FE  6411               	cpfsgt	_receive_temp_val^0,c
+   284   000200  EF04  F001         	goto	u311
+   285   000204  EF06  F001         	goto	u310
+   286   000208                     u311:
+   287   000208  EF0A  F001         	goto	l40
+   288   00020C                     u310:
+   289   00020C  808B               	bsf	139,0,c	;volatile
+   290   00020E  928B               	bcf	139,1,c	;volatile
+   291   000210  EFFE  F000         	goto	l1357
+   292   000214                     l40:
+   293   000214  908B               	bcf	139,0,c	;volatile
+   294   000216  928B               	bcf	139,1,c	;volatile
+   295   000218  EFFE  F000         	goto	l1357
+   296   00021C  EF43  F000         	goto	start
+   297   000220                     __end_of_main:
+   298                           	callstack 0
+   299                           
+   300 ;; *************** function _SYSTEM_Initialize *****************
+   301 ;; Defined at:
+   302 ;;		line 50 in file "mcc_generated_files/mcc.c"
+   303 ;; Parameters:    Size  Location     Type
+   304 ;;		None
+   305 ;; Auto vars:     Size  Location     Type
+   306 ;;		None
+   307 ;; Return value:  Size  Location     Type
+   308 ;;                  1    wreg      void 
+   309 ;; Registers used:
+   310 ;;		wreg, status,2, status,0, cstack
+   311 ;; Tracked objects:
+   312 ;;		On entry : 0/0
+   313 ;;		On exit  : 0/0
+   314 ;;		Unchanged: 0/0
+   315 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   316 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   317 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   318 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   319 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   320 ;;Total ram usage:        0 bytes
+   321 ;; Hardware stack levels used: 1
+   322 ;; Hardware stack levels required when called: 6
+   323 ;; This function calls:
+   324 ;;		_I2C_Initialize
+   325 ;;		_INTERRUPT_Initialize
+   326 ;;		_OSCILLATOR_Initialize
+   327 ;;		_PIN_MANAGER_Initialize
+   328 ;; This function is called by:
+   329 ;;		_main
+   330 ;; This function uses a non-reentrant model
+   331 ;;
+   332                           
+   333                           	psect	text1
+   334   000362                     __ptext1:
+   335                           	callstack 0
+   336   000362                     _SYSTEM_Initialize:
+   337                           	callstack 24
+   338   000362                     
+   339                           ;mcc_generated_files/mcc.c: 53:     INTERRUPT_Initialize();
+   340   000362  EC00  F002         	call	_INTERRUPT_Initialize	;wreg free
+   341   000366                     
+   342                           ;mcc_generated_files/mcc.c: 54:     I2C_Initialize();
+   343   000366  ECBA  F001         	call	_I2C_Initialize	;wreg free
+   344   00036A                     
+   345                           ;mcc_generated_files/mcc.c: 55:     PIN_MANAGER_Initialize();
+   346   00036A  EC10  F001         	call	_PIN_MANAGER_Initialize	;wreg free
+   347   00036E                     
+   348                           ;mcc_generated_files/mcc.c: 56:     OSCILLATOR_Initialize();
+   349   00036E  ECC2  F001         	call	_OSCILLATOR_Initialize	;wreg free
+   350   000372  0012               	return		;funcret
+   351   000374                     __end_of_SYSTEM_Initialize:
+   352                           	callstack 0
+   353                           
+   354 ;; *************** function _PIN_MANAGER_Initialize *****************
+   355 ;; Defined at:
+   356 ;;		line 55 in file "mcc_generated_files/pin_manager.c"
+   357 ;; Parameters:    Size  Location     Type
+   358 ;;		None
+   359 ;; Auto vars:     Size  Location     Type
+   360 ;;		None
+   361 ;; Return value:  Size  Location     Type
+   362 ;;                  1    wreg      void 
+   363 ;; Registers used:
+   364 ;;		wreg, status,2
+   365 ;; Tracked objects:
+   366 ;;		On entry : 0/0
+   367 ;;		On exit  : 0/0
+   368 ;;		Unchanged: 0/0
+   369 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   370 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   371 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   372 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   373 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   374 ;;Total ram usage:        0 bytes
+   375 ;; Hardware stack levels used: 1
+   376 ;; Hardware stack levels required when called: 5
+   377 ;; This function calls:
+   378 ;;		Nothing
+   379 ;; This function is called by:
+   380 ;;		_SYSTEM_Initialize
+   381 ;; This function uses a non-reentrant model
+   382 ;;
+   383                           
+   384                           	psect	text2
+   385   000220                     __ptext2:
+   386                           	callstack 0
+   387   000220                     _PIN_MANAGER_Initialize:
+   388                           	callstack 24
+   389   000220                     
+   390                           ;mcc_generated_files/pin_manager.c: 60:     LATE = 0x00;
+   391   000220  0E00               	movlw	0
+   392   000222  6E8D               	movwf	141,c	;volatile
+   393                           
+   394                           ;mcc_generated_files/pin_manager.c: 61:     LATD = 0x00;
+   395   000224  0E00               	movlw	0
+   396   000226  6E8C               	movwf	140,c	;volatile
+   397                           
+   398                           ;mcc_generated_files/pin_manager.c: 62:     LATA = 0x00;
+   399   000228  0E00               	movlw	0
+   400   00022A  6E89               	movwf	137,c	;volatile
+   401                           
+   402                           ;mcc_generated_files/pin_manager.c: 63:     LATB = 0x00;
+   403   00022C  0E00               	movlw	0
+   404   00022E  6E8A               	movwf	138,c	;volatile
+   405                           
+   406                           ;mcc_generated_files/pin_manager.c: 64:     LATC = 0x00;
+   407   000230  0E00               	movlw	0
+   408   000232  6E8B               	movwf	139,c	;volatile
+   409                           
+   410                           ;mcc_generated_files/pin_manager.c: 69:     TRISE = 0x07;
+   411   000234  0E07               	movlw	7
+   412   000236  6E96               	movwf	150,c	;volatile
+   413   000238                     
+   414                           ;mcc_generated_files/pin_manager.c: 70:     TRISA = 0xFF;
+   415   000238  6892               	setf	146,c	;volatile
+   416   00023A                     
+   417                           ;mcc_generated_files/pin_manager.c: 71:     TRISB = 0xFF;
+   418   00023A  6893               	setf	147,c	;volatile
+   419                           
+   420                           ;mcc_generated_files/pin_manager.c: 72:     TRISC = 0xFC;
+   421   00023C  0EFC               	movlw	252
+   422   00023E  6E94               	movwf	148,c	;volatile
+   423   000240                     
+   424                           ;mcc_generated_files/pin_manager.c: 73:     TRISD = 0xFF;
+   425   000240  6895               	setf	149,c	;volatile
+   426   000242                     
+   427                           ;mcc_generated_files/pin_manager.c: 78:     ANSEL = 0xFF;
+   428   000242  687E               	setf	126,c	;volatile
+   429                           
+   430                           ;mcc_generated_files/pin_manager.c: 79:     ANSELH = 0x1F;
+   431   000244  0E1F               	movlw	31
+   432   000246  6E7F               	movwf	127,c	;volatile
+   433                           
+   434                           ;mcc_generated_files/pin_manager.c: 84:     WPUB = 0x00;
+   435   000248  0E00               	movlw	0
+   436   00024A  6E7C               	movwf	124,c	;volatile
+   437   00024C                     
+   438                           ;mcc_generated_files/pin_manager.c: 85:     INTCON2bits.nRBPU = 1;
+   439   00024C  8EF1               	bsf	241,7,c	;volatile
+   440   00024E  0012               	return		;funcret
+   441   000250                     __end_of_PIN_MANAGER_Initialize:
+   442                           	callstack 0
+   443                           
+   444 ;; *************** function _OSCILLATOR_Initialize *****************
+   445 ;; Defined at:
+   446 ;;		line 59 in file "mcc_generated_files/mcc.c"
+   447 ;; Parameters:    Size  Location     Type
+   448 ;;		None
+   449 ;; Auto vars:     Size  Location     Type
+   450 ;;		None
+   451 ;; Return value:  Size  Location     Type
+   452 ;;                  1    wreg      void 
+   453 ;; Registers used:
+   454 ;;		wreg, status,2
+   455 ;; Tracked objects:
+   456 ;;		On entry : 0/0
+   457 ;;		On exit  : 0/0
+   458 ;;		Unchanged: 0/0
+   459 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   460 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   461 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   462 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   463 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   464 ;;Total ram usage:        0 bytes
+   465 ;; Hardware stack levels used: 1
+   466 ;; Hardware stack levels required when called: 5
+   467 ;; This function calls:
+   468 ;;		Nothing
+   469 ;; This function is called by:
+   470 ;;		_SYSTEM_Initialize
+   471 ;; This function uses a non-reentrant model
+   472 ;;
+   473                           
+   474                           	psect	text3
+   475   000384                     __ptext3:
+   476                           	callstack 0
+   477   000384                     _OSCILLATOR_Initialize:
+   478                           	callstack 24
+   479   000384                     
+   480                           ;mcc_generated_files/mcc.c: 62:     OSCCON = 0x30;
+   481   000384  0E30               	movlw	48
+   482   000386  6ED3               	movwf	211,c	;volatile
+   483                           
+   484                           ;mcc_generated_files/mcc.c: 64:     OSCTUNE = 0x00;
+   485   000388  0E00               	movlw	0
+   486   00038A  6E9B               	movwf	155,c	;volatile
+   487   00038C  0012               	return		;funcret
+   488   00038E                     __end_of_OSCILLATOR_Initialize:
+   489                           	callstack 0
+   490                           
+   491 ;; *************** function _INTERRUPT_Initialize *****************
+   492 ;; Defined at:
+   493 ;;		line 52 in file "mcc_generated_files/interrupt_manager.c"
+   494 ;; Parameters:    Size  Location     Type
+   495 ;;		None
+   496 ;; Auto vars:     Size  Location     Type
+   497 ;;		None
+   498 ;; Return value:  Size  Location     Type
+   499 ;;                  1    wreg      void 
+   500 ;; Registers used:
+   501 ;;		None
+   502 ;; Tracked objects:
+   503 ;;		On entry : 0/0
+   504 ;;		On exit  : 0/0
+   505 ;;		Unchanged: 0/0
+   506 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   507 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   508 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   509 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   510 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   511 ;;Total ram usage:        0 bytes
+   512 ;; Hardware stack levels used: 1
+   513 ;; Hardware stack levels required when called: 5
+   514 ;; This function calls:
+   515 ;;		Nothing
+   516 ;; This function is called by:
+   517 ;;		_SYSTEM_Initialize
+   518 ;; This function uses a non-reentrant model
+   519 ;;
+   520                           
+   521                           	psect	text4
+   522   000400                     __ptext4:
+   523                           	callstack 0
+   524   000400                     _INTERRUPT_Initialize:
+   525                           	callstack 24
+   526   000400                     
+   527                           ;mcc_generated_files/interrupt_manager.c: 55:     RCONbits.IPEN = 0;
+   528   000400  9ED0               	bcf	208,7,c	;volatile
+   529   000402  0012               	return		;funcret
+   530   000404                     __end_of_INTERRUPT_Initialize:
+   531                           	callstack 0
+   532                           
+   533 ;; *************** function _I2C_Initialize *****************
+   534 ;; Defined at:
+   535 ;;		line 108 in file "mcc_generated_files/i2c_slave.c"
+   536 ;; Parameters:    Size  Location     Type
+   537 ;;		None
+   538 ;; Auto vars:     Size  Location     Type
+   539 ;;		None
+   540 ;; Return value:  Size  Location     Type
+   541 ;;                  1    wreg      void 
+   542 ;; Registers used:
+   543 ;;		wreg, status,2, status,0
+   544 ;; Tracked objects:
+   545 ;;		On entry : 0/0
+   546 ;;		On exit  : 0/0
+   547 ;;		Unchanged: 0/0
+   548 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   549 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   550 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   551 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   552 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   553 ;;Total ram usage:        0 bytes
+   554 ;; Hardware stack levels used: 1
+   555 ;; Hardware stack levels required when called: 5
+   556 ;; This function calls:
+   557 ;;		Nothing
+   558 ;; This function is called by:
+   559 ;;		_SYSTEM_Initialize
+   560 ;;		_I2C_Enable
+   561 ;; This function uses a non-reentrant model
+   562 ;;
+   563                           
+   564                           	psect	text5
+   565   000374                     __ptext5:
+   566                           	callstack 0
+   567   000374                     _I2C_Initialize:
+   568                           	callstack 24
+   569   000374                     
+   570                           ;mcc_generated_files/i2c_slave.c: 110:     SSPSTAT = 0x80;
+   571   000374  0E80               	movlw	128
+   572   000376  6EC7               	movwf	199,c	;volatile
+   573   000378                     
+   574                           ;mcc_generated_files/i2c_slave.c: 111:     SSPCON1 |= 0x06;
+   575   000378  0E06               	movlw	6
+   576   00037A  12C6               	iorwf	198,f,c	;volatile
+   577   00037C                     
+   578                           ;mcc_generated_files/i2c_slave.c: 112:     SSPCON2 = 0x00;
+   579   00037C  0E00               	movlw	0
+   580   00037E  6EC5               	movwf	197,c	;volatile
+   581   000380                     
+   582                           ;mcc_generated_files/i2c_slave.c: 113:     SSPCON1bits.SSPEN = 0;
+   583   000380  9AC6               	bcf	198,5,c	;volatile
+   584   000382  0012               	return		;funcret
+   585   000384                     __end_of_I2C_Initialize:
+   586                           	callstack 0
+   587                           
+   588 ;; *************** function _I2C_Open *****************
+   589 ;; Defined at:
+   590 ;;		line 116 in file "mcc_generated_files/i2c_slave.c"
+   591 ;; Parameters:    Size  Location     Type
+   592 ;;		None
+   593 ;; Auto vars:     Size  Location     Type
+   594 ;;		None
+   595 ;; Return value:  Size  Location     Type
+   596 ;;                  1    wreg      void 
+   597 ;; Registers used:
+   598 ;;		wreg, status,2, status,0, cstack
+   599 ;; Tracked objects:
+   600 ;;		On entry : 0/0
+   601 ;;		On exit  : 0/0
+   602 ;;		Unchanged: 0/0
+   603 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   604 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   605 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   606 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   607 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   608 ;;Total ram usage:        0 bytes
+   609 ;; Hardware stack levels used: 1
+   610 ;; Hardware stack levels required when called: 6
+   611 ;; This function calls:
+   612 ;;		_I2C_SlaveEnableIrq
+   613 ;;		_I2C_SlaveOpen
+   614 ;;		_I2C_SlaveSetAddrIntHandler
+   615 ;;		_I2C_SlaveSetBusColIntHandler
+   616 ;;		_I2C_SlaveSetIsrHandler
+   617 ;;		_I2C_SlaveSetReadIntHandler
+   618 ;;		_I2C_SlaveSetSlaveAddr
+   619 ;;		_I2C_SlaveSetSlaveMask
+   620 ;;		_I2C_SlaveSetWrColIntHandler
+   621 ;;		_I2C_SlaveSetWriteIntHandler
+   622 ;; This function is called by:
+   623 ;;		_main
+   624 ;; This function uses a non-reentrant model
+   625 ;;
+   626                           
+   627                           	psect	text6
+   628   000186                     __ptext6:
+   629                           	callstack 0
+   630   000186                     _I2C_Open:
+   631                           	callstack 24
+   632   000186                     
+   633                           ;mcc_generated_files/i2c_slave.c: 118:     I2C_SlaveOpen();
+   634   000186  EC6D  F001         	call	_I2C_SlaveOpen	;wreg free
+   635   00018A                     
+   636                           ;mcc_generated_files/i2c_slave.c: 119:     I2C_SlaveSetSlaveAddr(112);
+   637   00018A  0E70               	movlw	112
+   638   00018C  ECE9  F001         	call	_I2C_SlaveSetSlaveAddr
+   639   000190                     
+   640                           ;mcc_generated_files/i2c_slave.c: 120:     I2C_SlaveSetSlaveMask(127);
+   641   000190  0E7F               	movlw	127
+   642   000192  ECE5  F001         	call	_I2C_SlaveSetSlaveMask
+   643                           
+   644                           ;mcc_generated_files/i2c_slave.c: 121:     I2C_SlaveSetIsrHandler(I2C_Isr);
+   645   000196  0E8A               	movlw	low _I2C_Isr
+   646   000198  6E17               	movwf	I2C_SlaveSetIsrHandler@handler^0,c
+   647   00019A  0E00               	movlw	high _I2C_Isr
+   648   00019C  6E18               	movwf	(I2C_SlaveSetIsrHandler@handler+1)^0,c
+   649   00019E  ECD6  F001         	call	_I2C_SlaveSetIsrHandler	;wreg free
+   650                           
+   651                           ;mcc_generated_files/i2c_slave.c: 122:     I2C_SlaveSetBusColIntHandler(I2C_SlaveDefBusC
+      +                          olInterruptHandler);
+   652   0001A2  0E00               	movlw	0
+   653   0001A4  6E17               	movwf	I2C_SlaveSetBusColIntHandler@handler^0,c
+   654   0001A6  0E00               	movlw	0
+   655   0001A8  6E18               	movwf	(I2C_SlaveSetBusColIntHandler@handler+1)^0,c
+   656   0001AA  ECDB  F001         	call	_I2C_SlaveSetBusColIntHandler	;wreg free
+   657                           
+   658                           ;mcc_generated_files/i2c_slave.c: 123:     I2C_SlaveSetWriteIntHandler(I2C_SlaveDefWrInt
+      +                          erruptHandler);
+   659   0001AE  0EDA               	movlw	low _I2C_SlaveDefWrInterruptHandler
+   660   0001B0  6E17               	movwf	I2C_SlaveSetWriteIntHandler@handler^0,c
+   661   0001B2  0E03               	movlw	high _I2C_SlaveDefWrInterruptHandler
+   662   0001B4  6E18               	movwf	(I2C_SlaveSetWriteIntHandler@handler+1)^0,c
+   663   0001B6  ECC7  F001         	call	_I2C_SlaveSetWriteIntHandler	;wreg free
+   664                           
+   665                           ;mcc_generated_files/i2c_slave.c: 124:     I2C_SlaveSetReadIntHandler(I2C_SlaveDefRdInte
+      +                          rruptHandler);
+   666   0001BA  0EEA               	movlw	low _I2C_SlaveDefRdInterruptHandler
+   667   0001BC  6E17               	movwf	I2C_SlaveSetReadIntHandler@handler^0,c
+   668   0001BE  0E03               	movlw	high _I2C_SlaveDefRdInterruptHandler
+   669   0001C0  6E18               	movwf	(I2C_SlaveSetReadIntHandler@handler+1)^0,c
+   670   0001C2  ECD1  F001         	call	_I2C_SlaveSetReadIntHandler	;wreg free
+   671                           
+   672                           ;mcc_generated_files/i2c_slave.c: 125:     I2C_SlaveSetAddrIntHandler(I2C_SlaveDefAddrIn
+      +                          terruptHandler);
+   673   0001C6  0EF2               	movlw	low _I2C_SlaveDefAddrInterruptHandler
+   674   0001C8  6E17               	movwf	I2C_SlaveSetAddrIntHandler@handler^0,c
+   675   0001CA  0E03               	movlw	high _I2C_SlaveDefAddrInterruptHandler
+   676   0001CC  6E18               	movwf	(I2C_SlaveSetAddrIntHandler@handler+1)^0,c
+   677   0001CE  ECE0  F001         	call	_I2C_SlaveSetAddrIntHandler	;wreg free
+   678                           
+   679                           ;mcc_generated_files/i2c_slave.c: 126:     I2C_SlaveSetWrColIntHandler(I2C_SlaveDefWrCol
+      +                          InterruptHandler);
+   680   0001D2  0E00               	movlw	0
+   681   0001D4  6E17               	movwf	I2C_SlaveSetWrColIntHandler@handler^0,c
+   682   0001D6  0E00               	movlw	0
+   683   0001D8  6E18               	movwf	(I2C_SlaveSetWrColIntHandler@handler+1)^0,c
+   684   0001DA  ECCC  F001         	call	_I2C_SlaveSetWrColIntHandler	;wreg free
+   685   0001DE                     
+   686                           ;mcc_generated_files/i2c_slave.c: 127:     I2C_SlaveEnableIrq();
+   687   0001DE  EC02  F002         	call	_I2C_SlaveEnableIrq	;wreg free
+   688   0001E2  0012               	return		;funcret
+   689   0001E4                     __end_of_I2C_Open:
+   690                           	callstack 0
+   691                           
+   692 ;; *************** function _I2C_SlaveSetWriteIntHandler *****************
+   693 ;; Defined at:
+   694 ;;		line 246 in file "mcc_generated_files/i2c_slave.c"
+   695 ;; Parameters:    Size  Location     Type
+   696 ;;  handler         2    5[COMRAM] PTR FTN()void 
+   697 ;;		 -> I2C_SlaveDefWrInterruptHandler(1), 
+   698 ;; Auto vars:     Size  Location     Type
+   699 ;;		None
+   700 ;; Return value:  Size  Location     Type
+   701 ;;                  1    wreg      void 
+   702 ;; Registers used:
+   703 ;;		wreg, status,2, status,0
+   704 ;; Tracked objects:
+   705 ;;		On entry : 0/0
+   706 ;;		On exit  : 0/0
+   707 ;;		Unchanged: 0/0
+   708 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   709 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   710 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   711 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   712 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   713 ;;Total ram usage:        2 bytes
+   714 ;; Hardware stack levels used: 1
+   715 ;; Hardware stack levels required when called: 5
+   716 ;; This function calls:
+   717 ;;		Nothing
+   718 ;; This function is called by:
+   719 ;;		_I2C_Open
+   720 ;; This function uses a non-reentrant model
+   721 ;;
+   722                           
+   723                           	psect	text7
+   724   00038E                     __ptext7:
+   725                           	callstack 0
+   726   00038E                     _I2C_SlaveSetWriteIntHandler:
+   727                           	callstack 24
+   728   00038E                     
+   729                           ;mcc_generated_files/i2c_slave.c: 247:     I2C_SlaveWrInterruptHandler = handler;
+   730   00038E  C017  F007         	movff	I2C_SlaveSetWriteIntHandler@handler,_I2C_SlaveWrInterruptHandler
+   731   000392  C018  F008         	movff	I2C_SlaveSetWriteIntHandler@handler+1,_I2C_SlaveWrInterruptHandler+1
+   732   000396  0012               	return		;funcret
+   733   000398                     __end_of_I2C_SlaveSetWriteIntHandler:
+   734                           	callstack 0
+   735                           
+   736 ;; *************** function _I2C_SlaveSetWrColIntHandler *****************
+   737 ;; Defined at:
+   738 ;;		line 279 in file "mcc_generated_files/i2c_slave.c"
+   739 ;; Parameters:    Size  Location     Type
+   740 ;;  handler         2    5[COMRAM] PTR FTN()void 
+   741 ;;		 -> I2C_SlaveDefWrColInterruptHandler(1), 
+   742 ;; Auto vars:     Size  Location     Type
+   743 ;;		None
+   744 ;; Return value:  Size  Location     Type
+   745 ;;                  1    wreg      void 
+   746 ;; Registers used:
+   747 ;;		wreg, status,2, status,0
+   748 ;; Tracked objects:
+   749 ;;		On entry : 0/0
+   750 ;;		On exit  : 0/0
+   751 ;;		Unchanged: 0/0
+   752 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   753 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   754 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   755 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   756 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   757 ;;Total ram usage:        2 bytes
+   758 ;; Hardware stack levels used: 1
+   759 ;; Hardware stack levels required when called: 5
+   760 ;; This function calls:
+   761 ;;		Nothing
+   762 ;; This function is called by:
+   763 ;;		_I2C_Open
+   764 ;; This function uses a non-reentrant model
+   765 ;;
+   766                           
+   767                           	psect	text8
+   768   000398                     __ptext8:
+   769                           	callstack 0
+   770   000398                     _I2C_SlaveSetWrColIntHandler:
+   771                           	callstack 24
+   772   000398                     
+   773                           ;mcc_generated_files/i2c_slave.c: 280:     I2C_SlaveWrColInterruptHandler = handler;
+   774   000398  C017  F001         	movff	I2C_SlaveSetWrColIntHandler@handler,_I2C_SlaveWrColInterruptHandler
+   775   00039C  C018  F002         	movff	I2C_SlaveSetWrColIntHandler@handler+1,_I2C_SlaveWrColInterruptHandler+1
+   776   0003A0  0012               	return		;funcret
+   777   0003A2                     __end_of_I2C_SlaveSetWrColIntHandler:
+   778                           	callstack 0
+   779                           
+   780 ;; *************** function _I2C_SlaveSetSlaveMask *****************
+   781 ;; Defined at:
+   782 ;;		line 336 in file "mcc_generated_files/i2c_slave.c"
+   783 ;; Parameters:    Size  Location     Type
+   784 ;;  maskAddr        1    wreg     unsigned char 
+   785 ;; Auto vars:     Size  Location     Type
+   786 ;;  maskAddr        1    5[COMRAM] unsigned char 
+   787 ;; Return value:  Size  Location     Type
+   788 ;;                  1    wreg      void 
+   789 ;; Registers used:
+   790 ;;		wreg
+   791 ;; Tracked objects:
+   792 ;;		On entry : 0/0
+   793 ;;		On exit  : 0/0
+   794 ;;		Unchanged: 0/0
+   795 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   796 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   797 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   798 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   799 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   800 ;;Total ram usage:        1 bytes
+   801 ;; Hardware stack levels used: 1
+   802 ;; Hardware stack levels required when called: 5
+   803 ;; This function calls:
+   804 ;;		Nothing
+   805 ;; This function is called by:
+   806 ;;		_I2C_Open
+   807 ;; This function uses a non-reentrant model
+   808 ;;
+   809                           
+   810                           	psect	text9
+   811   0003CA                     __ptext9:
+   812                           	callstack 0
+   813   0003CA                     _I2C_SlaveSetSlaveMask:
+   814                           	callstack 24
+   815                           
+   816                           ;incstack = 0
+   817                           ;I2C_SlaveSetSlaveMask@maskAddr stored from wreg
+   818   0003CA  6E17               	movwf	I2C_SlaveSetSlaveMask@maskAddr^0,c
+   819   0003CC                     
+   820                           ;mcc_generated_files/i2c_slave.c: 336: static __attribute__((inline)) void I2C_SlaveSetS
+      +                          laveMask(uint8_t maskAddr);mcc_generated_files/i2c_slave.c: 337: {;mcc_generated_files/i
+      +                          2c_slave.c: 338:     SSPMSK = (uint8_t) (maskAddr );
+   821   0003CC  C017  FF77         	movff	I2C_SlaveSetSlaveMask@maskAddr,3959	;volatile
+   822   0003D0  0012               	return		;funcret
+   823   0003D2                     __end_of_I2C_SlaveSetSlaveMask:
+   824                           	callstack 0
+   825                           
+   826 ;; *************** function _I2C_SlaveSetSlaveAddr *****************
+   827 ;; Defined at:
+   828 ;;		line 331 in file "mcc_generated_files/i2c_slave.c"
+   829 ;; Parameters:    Size  Location     Type
+   830 ;;  slaveAddr       1    wreg     unsigned char 
+   831 ;; Auto vars:     Size  Location     Type
+   832 ;;  slaveAddr       1    5[COMRAM] unsigned char 
+   833 ;; Return value:  Size  Location     Type
+   834 ;;                  1    wreg      void 
+   835 ;; Registers used:
+   836 ;;		wreg
+   837 ;; Tracked objects:
+   838 ;;		On entry : 0/0
+   839 ;;		On exit  : 0/0
+   840 ;;		Unchanged: 0/0
+   841 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   842 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   843 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   844 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   845 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   846 ;;Total ram usage:        1 bytes
+   847 ;; Hardware stack levels used: 1
+   848 ;; Hardware stack levels required when called: 5
+   849 ;; This function calls:
+   850 ;;		Nothing
+   851 ;; This function is called by:
+   852 ;;		_I2C_Open
+   853 ;; This function uses a non-reentrant model
+   854 ;;
+   855                           
+   856                           	psect	text10
+   857   0003D2                     __ptext10:
+   858                           	callstack 0
+   859   0003D2                     _I2C_SlaveSetSlaveAddr:
+   860                           	callstack 24
+   861                           
+   862                           ;incstack = 0
+   863                           ;I2C_SlaveSetSlaveAddr@slaveAddr stored from wreg
+   864   0003D2  6E17               	movwf	I2C_SlaveSetSlaveAddr@slaveAddr^0,c
+   865   0003D4                     
+   866                           ;mcc_generated_files/i2c_slave.c: 331: static __attribute__((inline)) void I2C_SlaveSetS
+      +                          laveAddr(uint8_t slaveAddr);mcc_generated_files/i2c_slave.c: 332: {;mcc_generated_files/
+      +                          i2c_slave.c: 333:     SSPADD = (uint8_t) (slaveAddr );
+   867   0003D4  C017  FFC8         	movff	I2C_SlaveSetSlaveAddr@slaveAddr,4040	;volatile
+   868   0003D8  0012               	return		;funcret
+   869   0003DA                     __end_of_I2C_SlaveSetSlaveAddr:
+   870                           	callstack 0
+   871                           
+   872 ;; *************** function _I2C_SlaveSetReadIntHandler *****************
+   873 ;; Defined at:
+   874 ;;		line 229 in file "mcc_generated_files/i2c_slave.c"
+   875 ;; Parameters:    Size  Location     Type
+   876 ;;  handler         2    5[COMRAM] PTR FTN()void 
+   877 ;;		 -> I2C_SlaveDefRdInterruptHandler(1), I2C_Custom_SlaveReadHandler(1), 
+   878 ;; Auto vars:     Size  Location     Type
+   879 ;;		None
+   880 ;; Return value:  Size  Location     Type
+   881 ;;                  1    wreg      void 
+   882 ;; Registers used:
+   883 ;;		wreg, status,2, status,0
+   884 ;; Tracked objects:
+   885 ;;		On entry : 0/0
+   886 ;;		On exit  : 0/0
+   887 ;;		Unchanged: 0/0
+   888 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   889 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   890 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   891 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   892 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   893 ;;Total ram usage:        2 bytes
+   894 ;; Hardware stack levels used: 1
+   895 ;; Hardware stack levels required when called: 5
+   896 ;; This function calls:
+   897 ;;		Nothing
+   898 ;; This function is called by:
+   899 ;;		_main
+   900 ;;		_I2C_Open
+   901 ;; This function uses a non-reentrant model
+   902 ;;
+   903                           
+   904                           	psect	text11
+   905   0003A2                     __ptext11:
+   906                           	callstack 0
+   907   0003A2                     _I2C_SlaveSetReadIntHandler:
+   908                           	callstack 25
+   909   0003A2                     
+   910                           ;mcc_generated_files/i2c_slave.c: 230:     I2C_SlaveRdInterruptHandler = handler;
+   911   0003A2  C017  F009         	movff	I2C_SlaveSetReadIntHandler@handler,_I2C_SlaveRdInterruptHandler
+   912   0003A6  C018  F00A         	movff	I2C_SlaveSetReadIntHandler@handler+1,_I2C_SlaveRdInterruptHandler+1
+   913   0003AA  0012               	return		;funcret
+   914   0003AC                     __end_of_I2C_SlaveSetReadIntHandler:
+   915                           	callstack 0
+   916                           
+   917 ;; *************** function _I2C_SlaveSetIsrHandler *****************
+   918 ;; Defined at:
+   919 ;;		line 223 in file "mcc_generated_files/i2c_slave.c"
+   920 ;; Parameters:    Size  Location     Type
+   921 ;;  handler         2    5[COMRAM] PTR FTN()void 
+   922 ;;		 -> I2C_Isr(1), 
+   923 ;; Auto vars:     Size  Location     Type
+   924 ;;		None
+   925 ;; Return value:  Size  Location     Type
+   926 ;;                  1    wreg      void 
+   927 ;; Registers used:
+   928 ;;		wreg, status,2, status,0
+   929 ;; Tracked objects:
+   930 ;;		On entry : 0/0
+   931 ;;		On exit  : 0/0
+   932 ;;		Unchanged: 0/0
+   933 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   934 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   935 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   936 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   937 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   938 ;;Total ram usage:        2 bytes
+   939 ;; Hardware stack levels used: 1
+   940 ;; Hardware stack levels required when called: 5
+   941 ;; This function calls:
+   942 ;;		Nothing
+   943 ;; This function is called by:
+   944 ;;		_I2C_Open
+   945 ;; This function uses a non-reentrant model
+   946 ;;
+   947                           
+   948                           	psect	text12
+   949   0003AC                     __ptext12:
+   950                           	callstack 0
+   951   0003AC                     _I2C_SlaveSetIsrHandler:
+   952                           	callstack 24
+   953   0003AC                     
+   954                           ;mcc_generated_files/i2c_slave.c: 223: void I2C_SlaveSetIsrHandler(i2cInterruptHandler h
+      +                          andler);mcc_generated_files/i2c_slave.c: 224: {;mcc_generated_files/i2c_slave.c: 225:   
+      +                            MSSP_InterruptHandler = handler;
+   955   0003AC  C017  F00B         	movff	I2C_SlaveSetIsrHandler@handler,_MSSP_InterruptHandler
+   956   0003B0  C018  F00C         	movff	I2C_SlaveSetIsrHandler@handler+1,_MSSP_InterruptHandler+1
+   957   0003B4  0012               	return		;funcret
+   958   0003B6                     __end_of_I2C_SlaveSetIsrHandler:
+   959                           	callstack 0
+   960                           
+   961 ;; *************** function _I2C_SlaveSetBusColIntHandler *****************
+   962 ;; Defined at:
+   963 ;;		line 295 in file "mcc_generated_files/i2c_slave.c"
+   964 ;; Parameters:    Size  Location     Type
+   965 ;;  handler         2    5[COMRAM] PTR FTN()void 
+   966 ;;		 -> I2C_SlaveDefBusColInterruptHandler(1), 
+   967 ;; Auto vars:     Size  Location     Type
+   968 ;;		None
+   969 ;; Return value:  Size  Location     Type
+   970 ;;                  1    wreg      void 
+   971 ;; Registers used:
+   972 ;;		wreg, status,2, status,0
+   973 ;; Tracked objects:
+   974 ;;		On entry : 0/0
+   975 ;;		On exit  : 0/0
+   976 ;;		Unchanged: 0/0
+   977 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   978 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   979 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   980 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   981 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   982 ;;Total ram usage:        2 bytes
+   983 ;; Hardware stack levels used: 1
+   984 ;; Hardware stack levels required when called: 5
+   985 ;; This function calls:
+   986 ;;		Nothing
+   987 ;; This function is called by:
+   988 ;;		_I2C_Open
+   989 ;; This function uses a non-reentrant model
+   990 ;;
+   991                           
+   992                           	psect	text13
+   993   0003B6                     __ptext13:
+   994                           	callstack 0
+   995   0003B6                     _I2C_SlaveSetBusColIntHandler:
+   996                           	callstack 24
+   997   0003B6                     
+   998                           ;mcc_generated_files/i2c_slave.c: 296:     I2C_SlaveBusColInterruptHandler = handler;
+   999   0003B6  C017  F003         	movff	I2C_SlaveSetBusColIntHandler@handler,_I2C_SlaveBusColInterruptHandler
+  1000   0003BA  C018  F004         	movff	I2C_SlaveSetBusColIntHandler@handler+1,_I2C_SlaveBusColInterruptHandler+1
+  1001   0003BE  0012               	return		;funcret
+  1002   0003C0                     __end_of_I2C_SlaveSetBusColIntHandler:
+  1003                           	callstack 0
+  1004                           
+  1005 ;; *************** function _I2C_SlaveSetAddrIntHandler *****************
+  1006 ;; Defined at:
+  1007 ;;		line 263 in file "mcc_generated_files/i2c_slave.c"
+  1008 ;; Parameters:    Size  Location     Type
+  1009 ;;  handler         2    5[COMRAM] PTR FTN()void 
+  1010 ;;		 -> I2C_SlaveDefAddrInterruptHandler(1), 
+  1011 ;; Auto vars:     Size  Location     Type
+  1012 ;;		None
+  1013 ;; Return value:  Size  Location     Type
+  1014 ;;                  1    wreg      void 
+  1015 ;; Registers used:
+  1016 ;;		wreg, status,2, status,0
+  1017 ;; Tracked objects:
+  1018 ;;		On entry : 0/0
+  1019 ;;		On exit  : 0/0
+  1020 ;;		Unchanged: 0/0
+  1021 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1022 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1023 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1024 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1025 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1026 ;;Total ram usage:        2 bytes
+  1027 ;; Hardware stack levels used: 1
+  1028 ;; Hardware stack levels required when called: 5
+  1029 ;; This function calls:
+  1030 ;;		Nothing
+  1031 ;; This function is called by:
+  1032 ;;		_I2C_Open
+  1033 ;; This function uses a non-reentrant model
+  1034 ;;
+  1035                           
+  1036                           	psect	text14
+  1037   0003C0                     __ptext14:
+  1038                           	callstack 0
+  1039   0003C0                     _I2C_SlaveSetAddrIntHandler:
+  1040                           	callstack 24
+  1041   0003C0                     
+  1042                           ;mcc_generated_files/i2c_slave.c: 264:     I2C_SlaveAddrInterruptHandler = handler;
+  1043   0003C0  C017  F005         	movff	I2C_SlaveSetAddrIntHandler@handler,_I2C_SlaveAddrInterruptHandler
+  1044   0003C4  C018  F006         	movff	I2C_SlaveSetAddrIntHandler@handler+1,_I2C_SlaveAddrInterruptHandler+1
+  1045   0003C8  0012               	return		;funcret
+  1046   0003CA                     __end_of_I2C_SlaveSetAddrIntHandler:
+  1047                           	callstack 0
+  1048                           
+  1049 ;; *************** function _I2C_SlaveOpen *****************
+  1050 ;; Defined at:
+  1051 ;;		line 310 in file "mcc_generated_files/i2c_slave.c"
+  1052 ;; Parameters:    Size  Location     Type
+  1053 ;;		None
+  1054 ;; Auto vars:     Size  Location     Type
+  1055 ;;		None
+  1056 ;; Return value:  Size  Location     Type
+  1057 ;;                  1    wreg      _Bool 
+  1058 ;; Registers used:
+  1059 ;;		wreg, status,2, status,0
+  1060 ;; Tracked objects:
+  1061 ;;		On entry : 0/0
+  1062 ;;		On exit  : 0/0
+  1063 ;;		Unchanged: 0/0
+  1064 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1065 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1066 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1067 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1068 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1069 ;;Total ram usage:        0 bytes
+  1070 ;; Hardware stack levels used: 1
+  1071 ;; Hardware stack levels required when called: 5
+  1072 ;; This function calls:
+  1073 ;;		Nothing
+  1074 ;; This function is called by:
+  1075 ;;		_I2C_Open
+  1076 ;; This function uses a non-reentrant model
+  1077 ;;
+  1078                           
+  1079                           	psect	text15
+  1080   0002DA                     __ptext15:
+  1081                           	callstack 0
+  1082   0002DA                     _I2C_SlaveOpen:
+  1083                           	callstack 24
+  1084   0002DA                     
+  1085                           ;mcc_generated_files/i2c_slave.c: 312:     if(!SSPCON1bits.SSPEN)
+  1086   0002DA  BAC6               	btfsc	198,5,c	;volatile
+  1087   0002DC  EF72  F001         	goto	u11
+  1088   0002E0  EF74  F001         	goto	u10
+  1089   0002E4                     u11:
+  1090   0002E4  EF7B  F001         	goto	l320
+  1091   0002E8                     u10:
+  1092   0002E8                     
+  1093                           ;mcc_generated_files/i2c_slave.c: 313:     {;mcc_generated_files/i2c_slave.c: 314:      
+      +                             SSPSTAT = 0x80;
+  1094   0002E8  0E80               	movlw	128
+  1095   0002EA  6EC7               	movwf	199,c	;volatile
+  1096   0002EC                     
+  1097                           ;mcc_generated_files/i2c_slave.c: 315:         SSPCON1 |= 0x06;
+  1098   0002EC  0E06               	movlw	6
+  1099   0002EE  12C6               	iorwf	198,f,c	;volatile
+  1100   0002F0                     
+  1101                           ;mcc_generated_files/i2c_slave.c: 316:         SSPCON2 = 0x00;
+  1102   0002F0  0E00               	movlw	0
+  1103   0002F2  6EC5               	movwf	197,c	;volatile
+  1104   0002F4                     
+  1105                           ;mcc_generated_files/i2c_slave.c: 317:         SSPCON1bits.SSPEN = 1;
+  1106   0002F4  8AC6               	bsf	198,5,c	;volatile
+  1107   0002F6                     l320:
+  1108   0002F6  0012               	return		;funcret
+  1109   0002F8                     __end_of_I2C_SlaveOpen:
+  1110                           	callstack 0
+  1111                           
+  1112 ;; *************** function _I2C_SlaveEnableIrq *****************
+  1113 ;; Defined at:
+  1114 ;;		line 341 in file "mcc_generated_files/i2c_slave.c"
+  1115 ;; Parameters:    Size  Location     Type
+  1116 ;;		None
+  1117 ;; Auto vars:     Size  Location     Type
+  1118 ;;		None
+  1119 ;; Return value:  Size  Location     Type
+  1120 ;;                  1    wreg      void 
+  1121 ;; Registers used:
+  1122 ;;		None
+  1123 ;; Tracked objects:
+  1124 ;;		On entry : 0/0
+  1125 ;;		On exit  : 0/0
+  1126 ;;		Unchanged: 0/0
+  1127 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1128 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1129 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1130 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1131 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1132 ;;Total ram usage:        0 bytes
+  1133 ;; Hardware stack levels used: 1
+  1134 ;; Hardware stack levels required when called: 5
+  1135 ;; This function calls:
+  1136 ;;		Nothing
+  1137 ;; This function is called by:
+  1138 ;;		_I2C_Open
+  1139 ;; This function uses a non-reentrant model
+  1140 ;;
+  1141                           
+  1142                           	psect	text16
+  1143   000404                     __ptext16:
+  1144                           	callstack 0
+  1145   000404                     _I2C_SlaveEnableIrq:
+  1146                           	callstack 24
+  1147   000404                     
+  1148                           ;mcc_generated_files/i2c_slave.c: 343:     PIE1bits.SSPIE = 1;
+  1149   000404  869D               	bsf	157,3,c	;volatile
+  1150   000406  0012               	return		;funcret
+  1151   000408                     __end_of_I2C_SlaveEnableIrq:
+  1152                           	callstack 0
+  1153                           
+  1154 ;; *************** function _INTERRUPT_InterruptManager *****************
+  1155 ;; Defined at:
+  1156 ;;		line 58 in file "mcc_generated_files/interrupt_manager.c"
+  1157 ;; Parameters:    Size  Location     Type
+  1158 ;;		None
+  1159 ;; Auto vars:     Size  Location     Type
+  1160 ;;		None
+  1161 ;; Return value:  Size  Location     Type
+  1162 ;;                  1    wreg      void 
+  1163 ;; Registers used:
+  1164 ;;		wreg, status,2, status,0, pcl, pclath, pclatu, tosl, cstack
+  1165 ;; Tracked objects:
+  1166 ;;		On entry : 0/0
+  1167 ;;		On exit  : 0/0
+  1168 ;;		Unchanged: 0/0
+  1169 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1170 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1171 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1172 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1173 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1174 ;;Total ram usage:        2 bytes
+  1175 ;; Hardware stack levels used: 1
+  1176 ;; Hardware stack levels required when called: 4
+  1177 ;; This function calls:
+  1178 ;;		NULL
+  1179 ;;		_I2C_Isr
+  1180 ;; This function is called by:
+  1181 ;;		Interrupt level 2
+  1182 ;; This function uses a non-reentrant model
+  1183 ;;
+  1184                           
+  1185                           	psect	intcode
+  1186   000008                     __pintcode:
+  1187                           	callstack 0
+  1188   000008                     _INTERRUPT_InterruptManager:
+  1189                           	callstack 24
+  1190                           
+  1191                           ;incstack = 0
+  1192   000008  8219               	bsf	int$flags,1,c	;set compiler interrupt flag (level 2)
+  1193   00000A  CFFA F015          	movff	pclath,??_INTERRUPT_InterruptManager
+  1194   00000E  CFFB F016          	movff	pclatu,??_INTERRUPT_InterruptManager+1
+  1195   000012                     
+  1196                           ;mcc_generated_files/interrupt_manager.c: 61:     if(INTCONbits.PEIE == 1)
+  1197   000012  ACF2               	btfss	242,6,c	;volatile
+  1198   000014  EF0E  F000         	goto	i2u25_41
+  1199   000018  EF10  F000         	goto	i2u25_40
+  1200   00001C                     i2u25_41:
+  1201   00001C  EF3D  F000         	goto	i2l415
+  1202   000020                     i2u25_40:
+  1203   000020                     
+  1204                           ;mcc_generated_files/interrupt_manager.c: 62:     {;mcc_generated_files/interrupt_manage
+      +                          r.c: 63:         if(PIE2bits.BCLIE == 1 && PIR2bits.BCLIF == 1)
+  1205   000020  A6A0               	btfss	160,3,c	;volatile
+  1206   000022  EF15  F000         	goto	i2u26_41
+  1207   000026  EF17  F000         	goto	i2u26_40
+  1208   00002A                     i2u26_41:
+  1209   00002A  EF2D  F000         	goto	i2l410
+  1210   00002E                     i2u26_40:
+  1211   00002E  A6A1               	btfss	161,3,c	;volatile
+  1212   000030  EF1C  F000         	goto	i2u27_41
+  1213   000034  EF1E  F000         	goto	i2u27_40
+  1214   000038                     i2u27_41:
+  1215   000038  EF2D  F000         	goto	i2l410
+  1216   00003C                     i2u27_40:
+  1217   00003C                     i2l1321:
+  1218                           
+  1219                           ;mcc_generated_files/interrupt_manager.c: 64:         {;mcc_generated_files/interrupt_ma
+      +                          nager.c: 65:             MSSP_InterruptHandler();
+  1220   00003C  D802               	call	i2u28_48
+  1221   00003E  EF2B  F000         	goto	i2u28_49
+  1222   000042                     i2u28_48:
+  1223   000042  0005               	push	
+  1224   000044  6EFA               	movwf	pclath,c
+  1225   000046  500B               	movf	_MSSP_InterruptHandler^0,w,c
+  1226   000048  6EFD               	movwf	tosl,c
+  1227   00004A  500C               	movf	(_MSSP_InterruptHandler+1)^0,w,c
+  1228   00004C  6EFE               	movwf	tosh,c
+  1229   00004E  50F8               	movf	tblptru,w,c
+  1230   000050  6EFF               	movwf	tosu,c
+  1231   000052  50FA               	movf	pclath,w,c
+  1232   000054  0012               	return		;indir
+  1233   000056                     i2u28_49:
+  1234                           
+  1235                           ;mcc_generated_files/interrupt_manager.c: 66:         }
+  1236   000056  EF3D  F000         	goto	i2l415
+  1237   00005A                     i2l410:
+  1238   00005A  A69D               	btfss	157,3,c	;volatile
+  1239   00005C  EF32  F000         	goto	i2u29_41
+  1240   000060  EF34  F000         	goto	i2u29_40
+  1241   000064                     i2u29_41:
+  1242   000064  EF3D  F000         	goto	i2l411
+  1243   000068                     i2u29_40:
+  1244   000068  A69E               	btfss	158,3,c	;volatile
+  1245   00006A  EF39  F000         	goto	i2u30_41
+  1246   00006E  EF3B  F000         	goto	i2u30_40
+  1247   000072                     i2u30_41:
+  1248   000072  EF3D  F000         	goto	i2l411
+  1249   000076                     i2u30_40:
+  1250   000076  EF1E  F000         	goto	i2l1321
+  1251   00007A                     i2l411:
+  1252   00007A                     i2l415:
+  1253   00007A  C016  FFFB         	movff	??_INTERRUPT_InterruptManager+1,pclatu
+  1254   00007E  C015  FFFA         	movff	??_INTERRUPT_InterruptManager,pclath
+  1255   000082  9219               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+  1256   000084  0011               	retfie		f
+  1257   000086                     __end_of_INTERRUPT_InterruptManager:
+  1258                           	callstack 0
+  1259                           
+  1260 ;; *************** function _I2C_Isr *****************
+  1261 ;; Defined at:
+  1262 ;;		line 165 in file "mcc_generated_files/i2c_slave.c"
+  1263 ;; Parameters:    Size  Location     Type
+  1264 ;;		None
+  1265 ;; Auto vars:     Size  Location     Type
+  1266 ;;		None
+  1267 ;; Return value:  Size  Location     Type
+  1268 ;;                  1    wreg      void 
+  1269 ;; Registers used:
+  1270 ;;		wreg, status,2, status,0, pcl, pclath, pclatu, tosl, cstack
+  1271 ;; Tracked objects:
+  1272 ;;		On entry : 0/0
+  1273 ;;		On exit  : 0/0
+  1274 ;;		Unchanged: 0/0
+  1275 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1276 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1277 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1278 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1279 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1280 ;;Total ram usage:        2 bytes
+  1281 ;; Hardware stack levels used: 1
+  1282 ;; Hardware stack levels required when called: 3
+  1283 ;; This function calls:
+  1284 ;;		_I2C_SlaveAddrCallBack
+  1285 ;;		_I2C_SlaveClearIrq
+  1286 ;;		_I2C_SlaveIsAddr
+  1287 ;;		_I2C_SlaveIsRead
+  1288 ;;		_I2C_SlaveIsRxBufFull
+  1289 ;;		_I2C_SlaveIsTxBufEmpty
+  1290 ;;		_I2C_SlaveRdCallBack
+  1291 ;;		_I2C_SlaveReleaseClock
+  1292 ;;		_I2C_SlaveWrCallBack
+  1293 ;; This function is called by:
+  1294 ;;		_I2C_Open
+  1295 ;;		_INTERRUPT_InterruptManager
+  1296 ;; This function uses a non-reentrant model
+  1297 ;;
+  1298                           
+  1299                           	psect	text18
+  1300   00008A                     __ptext18:
+  1301                           	callstack 0
+  1302   00008A                     _I2C_Isr:
+  1303                           	callstack 24
+  1304   00008A                     
+  1305                           ;mcc_generated_files/i2c_slave.c: 167:     I2C_SlaveClearIrq();
+  1306   00008A  EC06  F002         	call	_I2C_SlaveClearIrq	;wreg free
+  1307   00008E                     
+  1308                           ;mcc_generated_files/i2c_slave.c: 169:     if(I2C_SlaveIsAddr())
+  1309   00008E  ECA7  F001         	call	_I2C_SlaveIsAddr	;wreg free
+  1310   000092  0900               	iorlw	0
+  1311   000094  B4D8               	btfsc	status,2,c
+  1312   000096  EF4F  F000         	goto	i2u14_41
+  1313   00009A  EF51  F000         	goto	i2u14_40
+  1314   00009E                     i2u14_41:
+  1315   00009E  EF63  F000         	goto	i2l1217
+  1316   0000A2                     i2u14_40:
+  1317   0000A2                     
+  1318                           ;mcc_generated_files/i2c_slave.c: 170:     {;mcc_generated_files/i2c_slave.c: 171:      
+      +                             if(I2C_SlaveIsRead())
+  1319   0000A2  EC9D  F001         	call	_I2C_SlaveIsRead	;wreg free
+  1320   0000A6  0900               	iorlw	0
+  1321   0000A8  B4D8               	btfsc	status,2,c
+  1322   0000AA  EF59  F000         	goto	i2u15_41
+  1323   0000AE  EF5B  F000         	goto	i2u15_40
+  1324   0000B2                     i2u15_41:
+  1325   0000B2  EF5F  F000         	goto	i2l1215
+  1326   0000B6                     i2u15_40:
+  1327   0000B6                     
+  1328                           ;mcc_generated_files/i2c_slave.c: 172:         {;mcc_generated_files/i2c_slave.c: 173:  
+      +                                     i2cSlaveState = I2C_ADDR_TX;
+  1329   0000B6  0E01               	movlw	1
+  1330   0000B8  6E0D               	movwf	_i2cSlaveState^0,c	;volatile
+  1331                           
+  1332                           ;mcc_generated_files/i2c_slave.c: 174:         }
+  1333   0000BA  EFA3  F000         	goto	i2l1241
+  1334   0000BE                     i2l1215:
+  1335                           
+  1336                           ;mcc_generated_files/i2c_slave.c: 176:         {;mcc_generated_files/i2c_slave.c: 177:  
+      +                                     i2cSlaveState = I2C_ADDR_RX;
+  1337   0000BE  0E02               	movlw	2
+  1338   0000C0  6E0D               	movwf	_i2cSlaveState^0,c	;volatile
+  1339   0000C2  EFA3  F000         	goto	i2l1241
+  1340   0000C6                     i2l1217:
+  1341                           
+  1342                           ;mcc_generated_files/i2c_slave.c: 181:     {;mcc_generated_files/i2c_slave.c: 182:      
+      +                             if(I2C_SlaveIsRead())
+  1343   0000C6  EC9D  F001         	call	_I2C_SlaveIsRead	;wreg free
+  1344   0000CA  0900               	iorlw	0
+  1345   0000CC  B4D8               	btfsc	status,2,c
+  1346   0000CE  EF6B  F000         	goto	i2u16_41
+  1347   0000D2  EF6D  F000         	goto	i2u16_40
+  1348   0000D6                     i2u16_41:
+  1349   0000D6  EF71  F000         	goto	i2l1221
+  1350   0000DA                     i2u16_40:
+  1351   0000DA                     
+  1352                           ;mcc_generated_files/i2c_slave.c: 183:         {;mcc_generated_files/i2c_slave.c: 184:  
+      +                                     i2cSlaveState = I2C_DATA_TX;
+  1353   0000DA  0E03               	movlw	3
+  1354   0000DC  6E0D               	movwf	_i2cSlaveState^0,c	;volatile
+  1355                           
+  1356                           ;mcc_generated_files/i2c_slave.c: 185:         }
+  1357   0000DE  EFA3  F000         	goto	i2l1241
+  1358   0000E2                     i2l1221:
+  1359                           
+  1360                           ;mcc_generated_files/i2c_slave.c: 187:         {;mcc_generated_files/i2c_slave.c: 188:  
+      +                                     i2cSlaveState = I2C_DATA_RX;
+  1361   0000E2  0E04               	movlw	4
+  1362   0000E4  6E0D               	movwf	_i2cSlaveState^0,c	;volatile
+  1363   0000E6  EFA3  F000         	goto	i2l1241
+  1364   0000EA                     i2l1223:
+  1365                           
+  1366                           ;mcc_generated_files/i2c_slave.c: 195:             I2C_SlaveAddrCallBack();
+  1367   0000EA  EC56  F001         	call	_I2C_SlaveAddrCallBack	;wreg free
+  1368   0000EE                     
+  1369                           ;mcc_generated_files/i2c_slave.c: 196:             if(I2C_SlaveIsTxBufEmpty())
+  1370   0000EE  EC89  F001         	call	_I2C_SlaveIsTxBufEmpty	;wreg free
+  1371   0000F2  0900               	iorlw	0
+  1372   0000F4  B4D8               	btfsc	status,2,c
+  1373   0000F6  EF7F  F000         	goto	i2u17_41
+  1374   0000FA  EF81  F000         	goto	i2u17_40
+  1375   0000FE                     i2u17_41:
+  1376   0000FE  EFC0  F000         	goto	i2l1243
+  1377   000102                     i2u17_40:
+  1378   000102                     i2l1227:
+  1379                           
+  1380                           ;mcc_generated_files/i2c_slave.c: 197:             {;mcc_generated_files/i2c_slave.c: 19
+      +                          8:                 I2C_SlaveWrCallBack();
+  1381   000102  EC28  F001         	call	_I2C_SlaveWrCallBack	;wreg free
+  1382   000106  EFC0  F000         	goto	i2l1243
+  1383   00010A                     i2l1229:
+  1384                           
+  1385                           ;mcc_generated_files/i2c_slave.c: 202:             I2C_SlaveAddrCallBack();
+  1386   00010A  EC56  F001         	call	_I2C_SlaveAddrCallBack	;wreg free
+  1387                           
+  1388                           ;mcc_generated_files/i2c_slave.c: 203:             break;
+  1389   00010E  EFC0  F000         	goto	i2l1243
+  1390   000112                     i2l1231:
+  1391                           
+  1392                           ;mcc_generated_files/i2c_slave.c: 205:             if(I2C_SlaveIsTxBufEmpty())
+  1393   000112  EC89  F001         	call	_I2C_SlaveIsTxBufEmpty	;wreg free
+  1394   000116  0900               	iorlw	0
+  1395   000118  B4D8               	btfsc	status,2,c
+  1396   00011A  EF91  F000         	goto	i2u18_41
+  1397   00011E  EF93  F000         	goto	i2u18_40
+  1398   000122                     i2u18_41:
+  1399   000122  EFC0  F000         	goto	i2l1243
+  1400   000126                     i2u18_40:
+  1401   000126  EF81  F000         	goto	i2l1227
+  1402   00012A                     i2l1235:
+  1403                           
+  1404                           ;mcc_generated_files/i2c_slave.c: 211:             if(I2C_SlaveIsRxBufFull())
+  1405   00012A  EC93  F001         	call	_I2C_SlaveIsRxBufFull	;wreg free
+  1406   00012E  0900               	iorlw	0
+  1407   000130  B4D8               	btfsc	status,2,c
+  1408   000132  EF9D  F000         	goto	i2u19_41
+  1409   000136  EF9F  F000         	goto	i2u19_40
+  1410   00013A                     i2u19_41:
+  1411   00013A  EFC0  F000         	goto	i2l1243
+  1412   00013E                     i2u19_40:
+  1413   00013E                     
+  1414                           ;mcc_generated_files/i2c_slave.c: 212:             {;mcc_generated_files/i2c_slave.c: 21
+      +                          3:                 I2C_SlaveRdCallBack();
+  1415   00013E  EC3F  F001         	call	_I2C_SlaveRdCallBack	;wreg free
+  1416   000142  EFC0  F000         	goto	i2l1243
+  1417   000146                     i2l1241:
+  1418   000146  500D               	movf	_i2cSlaveState^0,w,c	;volatile
+  1419   000148  6E13               	movwf	??_I2C_Isr^0,c
+  1420   00014A  6A14               	clrf	(??_I2C_Isr+1)^0,c
+  1421                           
+  1422                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  1423                           ; Switch size 1, requested type "simple"
+  1424                           ; Number of cases is 1, Range of values is 0 to 0
+  1425                           ; switch strategies available:
+  1426                           ; Name         Instructions Cycles
+  1427                           ; simple_byte            4     3 (average)
+  1428                           ;	Chosen strategy is simple_byte
+  1429   00014C  5014               	movf	(??_I2C_Isr+1)^0,w,c
+  1430   00014E  0A00               	xorlw	0	; case 0
+  1431   000150  B4D8               	btfsc	status,2,c
+  1432   000152  EFAD  F000         	goto	i2l1363
+  1433   000156  EFC0  F000         	goto	i2l1243
+  1434   00015A                     i2l1363:
+  1435                           
+  1436                           ; Switch size 1, requested type "simple"
+  1437                           ; Number of cases is 4, Range of values is 1 to 4
+  1438                           ; switch strategies available:
+  1439                           ; Name         Instructions Cycles
+  1440                           ; simple_byte           13     7 (average)
+  1441                           ;	Chosen strategy is simple_byte
+  1442   00015A  5013               	movf	??_I2C_Isr^0,w,c
+  1443   00015C  0A01               	xorlw	1	; case 1
+  1444   00015E  B4D8               	btfsc	status,2,c
+  1445   000160  EF75  F000         	goto	i2l1223
+  1446   000164  0A03               	xorlw	3	; case 2
+  1447   000166  B4D8               	btfsc	status,2,c
+  1448   000168  EF85  F000         	goto	i2l1229
+  1449   00016C  0A01               	xorlw	1	; case 3
+  1450   00016E  B4D8               	btfsc	status,2,c
+  1451   000170  EF89  F000         	goto	i2l1231
+  1452   000174  0A07               	xorlw	7	; case 4
+  1453   000176  B4D8               	btfsc	status,2,c
+  1454   000178  EF95  F000         	goto	i2l1235
+  1455   00017C  EFC0  F000         	goto	i2l1243
+  1456   000180                     i2l1243:
+  1457                           
+  1458                           ;mcc_generated_files/i2c_slave.c: 219:     I2C_SlaveReleaseClock();
+  1459   000180  EC04  F002         	call	_I2C_SlaveReleaseClock	;wreg free
+  1460   000184  0012               	return		;funcret
+  1461   000186                     __end_of_I2C_Isr:
+  1462                           	callstack 0
+  1463                           
+  1464 ;; *************** function _I2C_SlaveWrCallBack *****************
+  1465 ;; Defined at:
+  1466 ;;		line 250 in file "mcc_generated_files/i2c_slave.c"
+  1467 ;; Parameters:    Size  Location     Type
+  1468 ;;		None
+  1469 ;; Auto vars:     Size  Location     Type
+  1470 ;;		None
+  1471 ;; Return value:  Size  Location     Type
+  1472 ;;                  1    wreg      void 
+  1473 ;; Registers used:
+  1474 ;;		wreg, status,2, status,0, pcl, pclath, pclatu, tosl, cstack
+  1475 ;; Tracked objects:
+  1476 ;;		On entry : 0/0
+  1477 ;;		On exit  : 0/0
+  1478 ;;		Unchanged: 0/0
+  1479 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1480 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1481 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1482 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1483 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1484 ;;Total ram usage:        0 bytes
+  1485 ;; Hardware stack levels used: 1
+  1486 ;; Hardware stack levels required when called: 2
+  1487 ;; This function calls:
+  1488 ;;		NULL
+  1489 ;;		_I2C_SlaveDefWrInterruptHandler
+  1490 ;; This function is called by:
+  1491 ;;		_I2C_Isr
+  1492 ;; This function uses a non-reentrant model
+  1493 ;;
+  1494                           
+  1495                           	psect	text19
+  1496   000250                     __ptext19:
+  1497                           	callstack 0
+  1498   000250                     _I2C_SlaveWrCallBack:
+  1499                           	callstack 24
+  1500   000250                     
+  1501                           ;mcc_generated_files/i2c_slave.c: 252:     if (I2C_SlaveWrInterruptHandler)
+  1502   000250  5007               	movf	_I2C_SlaveWrInterruptHandler^0,w,c
+  1503   000252  1008               	iorwf	(_I2C_SlaveWrInterruptHandler+1)^0,w,c
+  1504   000254  B4D8               	btfsc	status,2,c
+  1505   000256  EF2F  F001         	goto	i2u9_41
+  1506   00025A  EF31  F001         	goto	i2u9_40
+  1507   00025E                     i2u9_41:
+  1508   00025E  EF3E  F001         	goto	i2l283
+  1509   000262                     i2u9_40:
+  1510   000262                     
+  1511                           ;mcc_generated_files/i2c_slave.c: 253:     {;mcc_generated_files/i2c_slave.c: 254:      
+      +                             I2C_SlaveWrInterruptHandler();
+  1512   000262  D802               	call	i2u10_48
+  1513   000264  EF3E  F001         	goto	i2u10_49
+  1514   000268                     i2u10_48:
+  1515   000268  0005               	push	
+  1516   00026A  6EFA               	movwf	pclath,c
+  1517   00026C  5007               	movf	_I2C_SlaveWrInterruptHandler^0,w,c
+  1518   00026E  6EFD               	movwf	tosl,c
+  1519   000270  5008               	movf	(_I2C_SlaveWrInterruptHandler+1)^0,w,c
+  1520   000272  6EFE               	movwf	tosh,c
+  1521   000274  50F8               	movf	tblptru,w,c
+  1522   000276  6EFF               	movwf	tosu,c
+  1523   000278  50FA               	movf	pclath,w,c
+  1524   00027A  0012               	return		;indir
+  1525   00027C                     i2u10_49:
+  1526   00027C                     i2l283:
+  1527   00027C  0012               	return		;funcret
+  1528   00027E                     __end_of_I2C_SlaveWrCallBack:
+  1529                           	callstack 0
+  1530                           
+  1531 ;; *************** function _I2C_SlaveDefWrInterruptHandler *****************
+  1532 ;; Defined at:
+  1533 ;;		line 258 in file "mcc_generated_files/i2c_slave.c"
+  1534 ;; Parameters:    Size  Location     Type
+  1535 ;;		None
+  1536 ;; Auto vars:     Size  Location     Type
+  1537 ;;		None
+  1538 ;; Return value:  Size  Location     Type
+  1539 ;;                  1    wreg      void 
+  1540 ;; Registers used:
+  1541 ;;		wreg, status,2, cstack
+  1542 ;; Tracked objects:
+  1543 ;;		On entry : 0/0
+  1544 ;;		On exit  : 0/0
+  1545 ;;		Unchanged: 0/0
+  1546 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1547 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1548 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1549 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1550 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1551 ;;Total ram usage:        0 bytes
+  1552 ;; Hardware stack levels used: 1
+  1553 ;; Hardware stack levels required when called: 1
+  1554 ;; This function calls:
+  1555 ;;		_I2C_SlaveSendTxData
+  1556 ;; This function is called by:
+  1557 ;;		_I2C_Open
+  1558 ;;		_I2C_SlaveWrCallBack
+  1559 ;; This function uses a non-reentrant model
+  1560 ;;
+  1561                           
+  1562                           	psect	text20
+  1563   0003DA                     __ptext20:
+  1564                           	callstack 0
+  1565   0003DA                     _I2C_SlaveDefWrInterruptHandler:
+  1566                           	callstack 24
+  1567   0003DA                     
+  1568                           ;mcc_generated_files/i2c_slave.c: 259:     I2C_SlaveSendTxData(i2cWrData);
+  1569   0003DA  5010               	movf	_i2cWrData^0,w,c	;volatile
+  1570   0003DC  ECF1  F001         	call	_I2C_SlaveSendTxData
+  1571   0003E0  0012               	return		;funcret
+  1572   0003E2                     __end_of_I2C_SlaveDefWrInterruptHandler:
+  1573                           	callstack 0
+  1574                           
+  1575 ;; *************** function _I2C_SlaveSendTxData *****************
+  1576 ;; Defined at:
+  1577 ;;		line 391 in file "mcc_generated_files/i2c_slave.c"
+  1578 ;; Parameters:    Size  Location     Type
+  1579 ;;  data            1    wreg     unsigned char 
+  1580 ;; Auto vars:     Size  Location     Type
+  1581 ;;  data            1    0[COMRAM] unsigned char 
+  1582 ;; Return value:  Size  Location     Type
+  1583 ;;                  1    wreg      void 
+  1584 ;; Registers used:
+  1585 ;;		wreg
+  1586 ;; Tracked objects:
+  1587 ;;		On entry : 0/0
+  1588 ;;		On exit  : 0/0
+  1589 ;;		Unchanged: 0/0
+  1590 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1591 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1592 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1593 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1594 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1595 ;;Total ram usage:        1 bytes
+  1596 ;; Hardware stack levels used: 1
+  1597 ;; This function calls:
+  1598 ;;		Nothing
+  1599 ;; This function is called by:
+  1600 ;;		_I2C_SlaveDefWrInterruptHandler
+  1601 ;;		_I2C_Write
+  1602 ;; This function uses a non-reentrant model
+  1603 ;;
+  1604                           
+  1605                           	psect	text21
+  1606   0003E2                     __ptext21:
+  1607                           	callstack 0
+  1608   0003E2                     _I2C_SlaveSendTxData:
+  1609                           	callstack 24
+  1610                           
+  1611                           ;incstack = 0
+  1612                           ;I2C_SlaveSendTxData@data stored from wreg
+  1613   0003E2  6E12               	movwf	I2C_SlaveSendTxData@data^0,c
+  1614   0003E4                     
+  1615                           ;mcc_generated_files/i2c_slave.c: 391: static __attribute__((inline)) void I2C_SlaveSend
+      +                          TxData(uint8_t data);mcc_generated_files/i2c_slave.c: 392: {;mcc_generated_files/i2c_sla
+      +                          ve.c: 393:     SSPBUF = data;
+  1616   0003E4  C012  FFC9         	movff	I2C_SlaveSendTxData@data,4041	;volatile
+  1617   0003E8  0012               	return		;funcret
+  1618   0003EA                     __end_of_I2C_SlaveSendTxData:
+  1619                           	callstack 0
+  1620                           
+  1621 ;; *************** function _I2C_SlaveReleaseClock *****************
+  1622 ;; Defined at:
+  1623 ;;		line 361 in file "mcc_generated_files/i2c_slave.c"
+  1624 ;; Parameters:    Size  Location     Type
+  1625 ;;		None
+  1626 ;; Auto vars:     Size  Location     Type
+  1627 ;;		None
+  1628 ;; Return value:  Size  Location     Type
+  1629 ;;                  1    wreg      void 
+  1630 ;; Registers used:
+  1631 ;;		None
+  1632 ;; Tracked objects:
+  1633 ;;		On entry : 0/0
+  1634 ;;		On exit  : 0/0
+  1635 ;;		Unchanged: 0/0
+  1636 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1637 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1638 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1639 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1640 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1641 ;;Total ram usage:        0 bytes
+  1642 ;; Hardware stack levels used: 1
+  1643 ;; This function calls:
+  1644 ;;		Nothing
+  1645 ;; This function is called by:
+  1646 ;;		_I2C_Isr
+  1647 ;; This function uses a non-reentrant model
+  1648 ;;
+  1649                           
+  1650                           	psect	text22
+  1651   000408                     __ptext22:
+  1652                           	callstack 0
+  1653   000408                     _I2C_SlaveReleaseClock:
+  1654                           	callstack 26
+  1655   000408                     
+  1656                           ;mcc_generated_files/i2c_slave.c: 363:     SSPCON1bits.CKP = 1;
+  1657   000408  88C6               	bsf	198,4,c	;volatile
+  1658   00040A  0012               	return		;funcret
+  1659   00040C                     __end_of_I2C_SlaveReleaseClock:
+  1660                           	callstack 0
+  1661                           
+  1662 ;; *************** function _I2C_SlaveRdCallBack *****************
+  1663 ;; Defined at:
+  1664 ;;		line 233 in file "mcc_generated_files/i2c_slave.c"
+  1665 ;; Parameters:    Size  Location     Type
+  1666 ;;		None
+  1667 ;; Auto vars:     Size  Location     Type
+  1668 ;;		None
+  1669 ;; Return value:  Size  Location     Type
+  1670 ;;                  1    wreg      void 
+  1671 ;; Registers used:
+  1672 ;;		wreg, status,2, status,0, pcl, pclath, pclatu, tosl, cstack
+  1673 ;; Tracked objects:
+  1674 ;;		On entry : 0/0
+  1675 ;;		On exit  : 0/0
+  1676 ;;		Unchanged: 0/0
+  1677 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1678 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1679 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1680 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1681 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1682 ;;Total ram usage:        0 bytes
+  1683 ;; Hardware stack levels used: 1
+  1684 ;; Hardware stack levels required when called: 2
+  1685 ;; This function calls:
+  1686 ;;		NULL
+  1687 ;;		_I2C_Custom_SlaveReadHandler
+  1688 ;;		_I2C_SlaveDefRdInterruptHandler
+  1689 ;; This function is called by:
+  1690 ;;		_I2C_Isr
+  1691 ;; This function uses a non-reentrant model
+  1692 ;;
+  1693                           
+  1694                           	psect	text23
+  1695   00027E                     __ptext23:
+  1696                           	callstack 0
+  1697   00027E                     _I2C_SlaveRdCallBack:
+  1698                           	callstack 24
+  1699   00027E                     
+  1700                           ;mcc_generated_files/i2c_slave.c: 235:     if (I2C_SlaveRdInterruptHandler)
+  1701   00027E  5009               	movf	_I2C_SlaveRdInterruptHandler^0,w,c
+  1702   000280  100A               	iorwf	(_I2C_SlaveRdInterruptHandler+1)^0,w,c
+  1703   000282  B4D8               	btfsc	status,2,c
+  1704   000284  EF46  F001         	goto	i2u12_41
+  1705   000288  EF48  F001         	goto	i2u12_40
+  1706   00028C                     i2u12_41:
+  1707   00028C  EF55  F001         	goto	i2l273
+  1708   000290                     i2u12_40:
+  1709   000290                     
+  1710                           ;mcc_generated_files/i2c_slave.c: 236:     {;mcc_generated_files/i2c_slave.c: 237:      
+      +                             I2C_SlaveRdInterruptHandler();
+  1711   000290  D802               	call	i2u13_48
+  1712   000292  EF55  F001         	goto	i2u13_49
+  1713   000296                     i2u13_48:
+  1714   000296  0005               	push	
+  1715   000298  6EFA               	movwf	pclath,c
+  1716   00029A  5009               	movf	_I2C_SlaveRdInterruptHandler^0,w,c
+  1717   00029C  6EFD               	movwf	tosl,c
+  1718   00029E  500A               	movf	(_I2C_SlaveRdInterruptHandler+1)^0,w,c
+  1719   0002A0  6EFE               	movwf	tosh,c
+  1720   0002A2  50F8               	movf	tblptru,w,c
+  1721   0002A4  6EFF               	movwf	tosu,c
+  1722   0002A6  50FA               	movf	pclath,w,c
+  1723   0002A8  0012               	return		;indir
+  1724   0002AA                     i2u13_49:
+  1725   0002AA                     i2l273:
+  1726   0002AA  0012               	return		;funcret
+  1727   0002AC                     __end_of_I2C_SlaveRdCallBack:
+  1728                           	callstack 0
+  1729                           
+  1730 ;; *************** function _I2C_Custom_SlaveReadHandler *****************
+  1731 ;; Defined at:
+  1732 ;;		line 39 in file "main.c"
+  1733 ;; Parameters:    Size  Location     Type
+  1734 ;;		None
+  1735 ;; Auto vars:     Size  Location     Type
+  1736 ;;		None
+  1737 ;; Return value:  Size  Location     Type
+  1738 ;;                  1    wreg      void 
+  1739 ;; Registers used:
+  1740 ;;		None
+  1741 ;; Tracked objects:
+  1742 ;;		On entry : 0/0
+  1743 ;;		On exit  : 0/0
+  1744 ;;		Unchanged: 0/0
+  1745 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1746 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1747 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1748 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1749 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1750 ;;Total ram usage:        0 bytes
+  1751 ;; Hardware stack levels used: 1
+  1752 ;; This function calls:
+  1753 ;;		Nothing
+  1754 ;; This function is called by:
+  1755 ;;		_main
+  1756 ;;		_I2C_SlaveRdCallBack
+  1757 ;; This function uses a non-reentrant model
+  1758 ;;
+  1759                           
+  1760                           	psect	text24
+  1761   0003FA                     __ptext24:
+  1762                           	callstack 0
+  1763   0003FA                     _I2C_Custom_SlaveReadHandler:
+  1764                           	callstack 25
+  1765   0003FA                     
+  1766                           ;main.c: 41:     receive_temp_val =SSPBUF;
+  1767   0003FA  CFC9 F011          	movff	4041,_receive_temp_val	;volatile
+  1768   0003FE  0012               	return		;funcret
+  1769   000400                     __end_of_I2C_Custom_SlaveReadHandler:
+  1770                           	callstack 0
+  1771                           
+  1772 ;; *************** function _I2C_SlaveDefRdInterruptHandler *****************
+  1773 ;; Defined at:
+  1774 ;;		line 241 in file "mcc_generated_files/i2c_slave.c"
+  1775 ;; Parameters:    Size  Location     Type
+  1776 ;;		None
+  1777 ;; Auto vars:     Size  Location     Type
+  1778 ;;		None
+  1779 ;; Return value:  Size  Location     Type
+  1780 ;;                  1    wreg      void 
+  1781 ;; Registers used:
+  1782 ;;		wreg, status,2, cstack
+  1783 ;; Tracked objects:
+  1784 ;;		On entry : 0/0
+  1785 ;;		On exit  : 0/0
+  1786 ;;		Unchanged: 0/0
+  1787 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1788 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1789 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1790 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1791 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1792 ;;Total ram usage:        0 bytes
+  1793 ;; Hardware stack levels used: 1
+  1794 ;; Hardware stack levels required when called: 1
+  1795 ;; This function calls:
+  1796 ;;		_I2C_SlaveGetRxData
+  1797 ;; This function is called by:
+  1798 ;;		_I2C_Open
+  1799 ;;		_I2C_SlaveRdCallBack
+  1800 ;; This function uses a non-reentrant model
+  1801 ;;
+  1802                           
+  1803                           	psect	text25
+  1804   0003EA                     __ptext25:
+  1805                           	callstack 0
+  1806   0003EA                     _I2C_SlaveDefRdInterruptHandler:
+  1807                           	callstack 24
+  1808   0003EA                     
+  1809                           ;mcc_generated_files/i2c_slave.c: 242:     i2cRdData = I2C_SlaveGetRxData();
+  1810   0003EA  EC08  F002         	call	_I2C_SlaveGetRxData	;wreg free
+  1811   0003EE  6E0F               	movwf	_i2cRdData^0,c	;volatile
+  1812   0003F0  0012               	return		;funcret
+  1813   0003F2                     __end_of_I2C_SlaveDefRdInterruptHandler:
+  1814                           	callstack 0
+  1815                           
+  1816 ;; *************** function _I2C_SlaveIsTxBufEmpty *****************
+  1817 ;; Defined at:
+  1818 ;;		line 381 in file "mcc_generated_files/i2c_slave.c"
+  1819 ;; Parameters:    Size  Location     Type
+  1820 ;;		None
+  1821 ;; Auto vars:     Size  Location     Type
+  1822 ;;		None
+  1823 ;; Return value:  Size  Location     Type
+  1824 ;;                  1    wreg      _Bool 
+  1825 ;; Registers used:
+  1826 ;;		wreg
+  1827 ;; Tracked objects:
+  1828 ;;		On entry : 0/0
+  1829 ;;		On exit  : 0/0
+  1830 ;;		Unchanged: 0/0
+  1831 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1832 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1833 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1834 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1835 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1836 ;;Total ram usage:        0 bytes
+  1837 ;; Hardware stack levels used: 1
+  1838 ;; This function calls:
+  1839 ;;		Nothing
+  1840 ;; This function is called by:
+  1841 ;;		_I2C_Isr
+  1842 ;; This function uses a non-reentrant model
+  1843 ;;
+  1844                           
+  1845                           	psect	text26
+  1846   000312                     __ptext26:
+  1847                           	callstack 0
+  1848   000312                     _I2C_SlaveIsTxBufEmpty:
+  1849                           	callstack 26
+  1850   000312                     
+  1851                           ;mcc_generated_files/i2c_slave.c: 383:     return !SSPSTATbits.BF;
+  1852   000312  A0C7               	btfss	199,0,c	;volatile
+  1853   000314  EF8E  F001         	goto	i2u7_41
+  1854   000318  EF91  F001         	goto	i2u7_40
+  1855   00031C                     i2u7_41:
+  1856   00031C  0E01               	movlw	1
+  1857   00031E  EF92  F001         	goto	i2u8_40
+  1858   000322                     i2u7_40:
+  1859   000322  0E00               	movlw	0
+  1860   000324                     i2u8_40:
+  1861   000324  0012               	return		;funcret
+  1862   000326                     __end_of_I2C_SlaveIsTxBufEmpty:
+  1863                           	callstack 0
+  1864                           
+  1865 ;; *************** function _I2C_SlaveIsRxBufFull *****************
+  1866 ;; Defined at:
+  1867 ;;		line 386 in file "mcc_generated_files/i2c_slave.c"
+  1868 ;; Parameters:    Size  Location     Type
+  1869 ;;		None
+  1870 ;; Auto vars:     Size  Location     Type
+  1871 ;;		None
+  1872 ;; Return value:  Size  Location     Type
+  1873 ;;                  1    wreg      _Bool 
+  1874 ;; Registers used:
+  1875 ;;		wreg
+  1876 ;; Tracked objects:
+  1877 ;;		On entry : 0/0
+  1878 ;;		On exit  : 0/0
+  1879 ;;		Unchanged: 0/0
+  1880 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1881 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1882 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1883 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1884 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1885 ;;Total ram usage:        0 bytes
+  1886 ;; Hardware stack levels used: 1
+  1887 ;; This function calls:
+  1888 ;;		Nothing
+  1889 ;; This function is called by:
+  1890 ;;		_I2C_Isr
+  1891 ;; This function uses a non-reentrant model
+  1892 ;;
+  1893                           
+  1894                           	psect	text27
+  1895   000326                     __ptext27:
+  1896                           	callstack 0
+  1897   000326                     _I2C_SlaveIsRxBufFull:
+  1898                           	callstack 26
+  1899   000326                     
+  1900                           ;mcc_generated_files/i2c_slave.c: 388:     return SSPSTATbits.BF;
+  1901   000326  B0C7               	btfsc	199,0,c	;volatile
+  1902   000328  EF98  F001         	goto	i2u11_41
+  1903   00032C  EF9B  F001         	goto	i2u11_40
+  1904   000330                     i2u11_41:
+  1905   000330  0E01               	movlw	1
+  1906   000332  EF9C  F001         	goto	i2u11_46
+  1907   000336                     i2u11_40:
+  1908   000336  0E00               	movlw	0
+  1909   000338                     i2u11_46:
+  1910   000338  0012               	return		;funcret
+  1911   00033A                     __end_of_I2C_SlaveIsRxBufFull:
+  1912                           	callstack 0
+  1913                           
+  1914 ;; *************** function _I2C_SlaveIsRead *****************
+  1915 ;; Defined at:
+  1916 ;;		line 351 in file "mcc_generated_files/i2c_slave.c"
+  1917 ;; Parameters:    Size  Location     Type
+  1918 ;;		None
+  1919 ;; Auto vars:     Size  Location     Type
+  1920 ;;		None
+  1921 ;; Return value:  Size  Location     Type
+  1922 ;;                  1    wreg      _Bool 
+  1923 ;; Registers used:
+  1924 ;;		wreg
+  1925 ;; Tracked objects:
+  1926 ;;		On entry : 0/0
+  1927 ;;		On exit  : 0/0
+  1928 ;;		Unchanged: 0/0
+  1929 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1930 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1931 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1932 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1933 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1934 ;;Total ram usage:        0 bytes
+  1935 ;; Hardware stack levels used: 1
+  1936 ;; This function calls:
+  1937 ;;		Nothing
+  1938 ;; This function is called by:
+  1939 ;;		_I2C_Isr
+  1940 ;;		_I2C_IsRead
+  1941 ;; This function uses a non-reentrant model
+  1942 ;;
+  1943                           
+  1944                           	psect	text28
+  1945   00033A                     __ptext28:
+  1946                           	callstack 0
+  1947   00033A                     _I2C_SlaveIsRead:
+  1948                           	callstack 26
+  1949   00033A                     
+  1950                           ;mcc_generated_files/i2c_slave.c: 353:     return (SSPSTATbits.R_nW);
+  1951   00033A  B4C7               	btfsc	199,2,c	;volatile
+  1952   00033C  EFA2  F001         	goto	i2u2_41
+  1953   000340  EFA5  F001         	goto	i2u2_40
+  1954   000344                     i2u2_41:
+  1955   000344  0E01               	movlw	1
+  1956   000346  EFA6  F001         	goto	i2u2_46
+  1957   00034A                     i2u2_40:
+  1958   00034A  0E00               	movlw	0
+  1959   00034C                     i2u2_46:
+  1960   00034C  0012               	return		;funcret
+  1961   00034E                     __end_of_I2C_SlaveIsRead:
+  1962                           	callstack 0
+  1963                           
+  1964 ;; *************** function _I2C_SlaveIsAddr *****************
+  1965 ;; Defined at:
+  1966 ;;		line 346 in file "mcc_generated_files/i2c_slave.c"
+  1967 ;; Parameters:    Size  Location     Type
+  1968 ;;		None
+  1969 ;; Auto vars:     Size  Location     Type
+  1970 ;;		None
+  1971 ;; Return value:  Size  Location     Type
+  1972 ;;                  1    wreg      _Bool 
+  1973 ;; Registers used:
+  1974 ;;		wreg
+  1975 ;; Tracked objects:
+  1976 ;;		On entry : 0/0
+  1977 ;;		On exit  : 0/0
+  1978 ;;		Unchanged: 0/0
+  1979 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1980 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1981 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1982 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1983 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1984 ;;Total ram usage:        0 bytes
+  1985 ;; Hardware stack levels used: 1
+  1986 ;; This function calls:
+  1987 ;;		Nothing
+  1988 ;; This function is called by:
+  1989 ;;		_I2C_Isr
+  1990 ;; This function uses a non-reentrant model
+  1991 ;;
+  1992                           
+  1993                           	psect	text29
+  1994   00034E                     __ptext29:
+  1995                           	callstack 0
+  1996   00034E                     _I2C_SlaveIsAddr:
+  1997                           	callstack 26
+  1998   00034E                     
+  1999                           ;mcc_generated_files/i2c_slave.c: 348:     return !(SSPSTATbits.D_nA);
+  2000   00034E  AAC7               	btfss	199,5,c	;volatile
+  2001   000350  EFAC  F001         	goto	i2u3_41
+  2002   000354  EFAF  F001         	goto	i2u3_40
+  2003   000358                     i2u3_41:
+  2004   000358  0E01               	movlw	1
+  2005   00035A  EFB0  F001         	goto	i2u4_40
+  2006   00035E                     i2u3_40:
+  2007   00035E  0E00               	movlw	0
+  2008   000360                     i2u4_40:
+  2009   000360  0012               	return		;funcret
+  2010   000362                     __end_of_I2C_SlaveIsAddr:
+  2011                           	callstack 0
+  2012                           
+  2013 ;; *************** function _I2C_SlaveClearIrq *****************
+  2014 ;; Defined at:
+  2015 ;;		line 356 in file "mcc_generated_files/i2c_slave.c"
+  2016 ;; Parameters:    Size  Location     Type
+  2017 ;;		None
+  2018 ;; Auto vars:     Size  Location     Type
+  2019 ;;		None
+  2020 ;; Return value:  Size  Location     Type
+  2021 ;;                  1    wreg      void 
+  2022 ;; Registers used:
+  2023 ;;		None
+  2024 ;; Tracked objects:
+  2025 ;;		On entry : 0/0
+  2026 ;;		On exit  : 0/0
+  2027 ;;		Unchanged: 0/0
+  2028 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2029 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2030 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2031 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2032 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2033 ;;Total ram usage:        0 bytes
+  2034 ;; Hardware stack levels used: 1
+  2035 ;; This function calls:
+  2036 ;;		Nothing
+  2037 ;; This function is called by:
+  2038 ;;		_I2C_Isr
+  2039 ;; This function uses a non-reentrant model
+  2040 ;;
+  2041                           
+  2042                           	psect	text30
+  2043   00040C                     __ptext30:
+  2044                           	callstack 0
+  2045   00040C                     _I2C_SlaveClearIrq:
+  2046                           	callstack 26
+  2047   00040C                     
+  2048                           ;mcc_generated_files/i2c_slave.c: 358:     PIR1bits.SSPIF = 0;
+  2049   00040C  969E               	bcf	158,3,c	;volatile
+  2050   00040E  0012               	return		;funcret
+  2051   000410                     __end_of_I2C_SlaveClearIrq:
+  2052                           	callstack 0
+  2053                           
+  2054 ;; *************** function _I2C_SlaveAddrCallBack *****************
+  2055 ;; Defined at:
+  2056 ;;		line 267 in file "mcc_generated_files/i2c_slave.c"
+  2057 ;; Parameters:    Size  Location     Type
+  2058 ;;		None
+  2059 ;; Auto vars:     Size  Location     Type
+  2060 ;;		None
+  2061 ;; Return value:  Size  Location     Type
+  2062 ;;                  1    wreg      void 
+  2063 ;; Registers used:
+  2064 ;;		wreg, status,2, status,0, pcl, pclath, pclatu, tosl, cstack
+  2065 ;; Tracked objects:
+  2066 ;;		On entry : 0/0
+  2067 ;;		On exit  : 0/0
+  2068 ;;		Unchanged: 0/0
+  2069 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2070 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2071 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2072 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2073 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2074 ;;Total ram usage:        0 bytes
+  2075 ;; Hardware stack levels used: 1
+  2076 ;; Hardware stack levels required when called: 2
+  2077 ;; This function calls:
+  2078 ;;		NULL
+  2079 ;;		_I2C_SlaveDefAddrInterruptHandler
+  2080 ;; This function is called by:
+  2081 ;;		_I2C_Isr
+  2082 ;; This function uses a non-reentrant model
+  2083 ;;
+  2084                           
+  2085                           	psect	text31
+  2086   0002AC                     __ptext31:
+  2087                           	callstack 0
+  2088   0002AC                     _I2C_SlaveAddrCallBack:
+  2089                           	callstack 24
+  2090   0002AC                     
+  2091                           ;mcc_generated_files/i2c_slave.c: 269:     if (I2C_SlaveAddrInterruptHandler) {
+  2092   0002AC  5005               	movf	_I2C_SlaveAddrInterruptHandler^0,w,c
+  2093   0002AE  1006               	iorwf	(_I2C_SlaveAddrInterruptHandler+1)^0,w,c
+  2094   0002B0  B4D8               	btfsc	status,2,c
+  2095   0002B2  EF5D  F001         	goto	i2u5_41
+  2096   0002B6  EF5F  F001         	goto	i2u5_40
+  2097   0002BA                     i2u5_41:
+  2098   0002BA  EF6C  F001         	goto	i2l293
+  2099   0002BE                     i2u5_40:
+  2100   0002BE                     
+  2101                           ;mcc_generated_files/i2c_slave.c: 270:         I2C_SlaveAddrInterruptHandler();
+  2102   0002BE  D802               	call	i2u6_48
+  2103   0002C0  EF6C  F001         	goto	i2u6_49
+  2104   0002C4                     i2u6_48:
+  2105   0002C4  0005               	push	
+  2106   0002C6  6EFA               	movwf	pclath,c
+  2107   0002C8  5005               	movf	_I2C_SlaveAddrInterruptHandler^0,w,c
+  2108   0002CA  6EFD               	movwf	tosl,c
+  2109   0002CC  5006               	movf	(_I2C_SlaveAddrInterruptHandler+1)^0,w,c
+  2110   0002CE  6EFE               	movwf	tosh,c
+  2111   0002D0  50F8               	movf	tblptru,w,c
+  2112   0002D2  6EFF               	movwf	tosu,c
+  2113   0002D4  50FA               	movf	pclath,w,c
+  2114   0002D6  0012               	return		;indir
+  2115   0002D8                     i2u6_49:
+  2116   0002D8                     i2l293:
+  2117   0002D8  0012               	return		;funcret
+  2118   0002DA                     __end_of_I2C_SlaveAddrCallBack:
+  2119                           	callstack 0
+  2120                           
+  2121 ;; *************** function _I2C_SlaveDefAddrInterruptHandler *****************
+  2122 ;; Defined at:
+  2123 ;;		line 274 in file "mcc_generated_files/i2c_slave.c"
+  2124 ;; Parameters:    Size  Location     Type
+  2125 ;;		None
+  2126 ;; Auto vars:     Size  Location     Type
+  2127 ;;		None
+  2128 ;; Return value:  Size  Location     Type
+  2129 ;;                  1    wreg      void 
+  2130 ;; Registers used:
+  2131 ;;		wreg, status,2, cstack
+  2132 ;; Tracked objects:
+  2133 ;;		On entry : 0/0
+  2134 ;;		On exit  : 0/0
+  2135 ;;		Unchanged: 0/0
+  2136 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2137 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2138 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2139 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2140 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2141 ;;Total ram usage:        0 bytes
+  2142 ;; Hardware stack levels used: 1
+  2143 ;; Hardware stack levels required when called: 1
+  2144 ;; This function calls:
+  2145 ;;		_I2C_SlaveGetRxData
+  2146 ;; This function is called by:
+  2147 ;;		_I2C_Open
+  2148 ;;		_I2C_SlaveAddrCallBack
+  2149 ;; This function uses a non-reentrant model
+  2150 ;;
+  2151                           
+  2152                           	psect	text32
+  2153   0003F2                     __ptext32:
+  2154                           	callstack 0
+  2155   0003F2                     _I2C_SlaveDefAddrInterruptHandler:
+  2156                           	callstack 24
+  2157   0003F2                     
+  2158                           ;mcc_generated_files/i2c_slave.c: 275:     i2cSlaveAddr = I2C_SlaveGetRxData();
+  2159   0003F2  EC08  F002         	call	_I2C_SlaveGetRxData	;wreg free
+  2160   0003F6  6E0E               	movwf	_i2cSlaveAddr^0,c	;volatile
+  2161   0003F8  0012               	return		;funcret
+  2162   0003FA                     __end_of_I2C_SlaveDefAddrInterruptHandler:
+  2163                           	callstack 0
+  2164                           
+  2165 ;; *************** function _I2C_SlaveGetRxData *****************
+  2166 ;; Defined at:
+  2167 ;;		line 396 in file "mcc_generated_files/i2c_slave.c"
+  2168 ;; Parameters:    Size  Location     Type
+  2169 ;;		None
+  2170 ;; Auto vars:     Size  Location     Type
+  2171 ;;		None
+  2172 ;; Return value:  Size  Location     Type
+  2173 ;;                  1    wreg      unsigned char 
+  2174 ;; Registers used:
+  2175 ;;		wreg, status,2
+  2176 ;; Tracked objects:
+  2177 ;;		On entry : 0/0
+  2178 ;;		On exit  : 0/0
+  2179 ;;		Unchanged: 0/0
+  2180 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2181 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2182 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2183 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2184 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2185 ;;Total ram usage:        0 bytes
+  2186 ;; Hardware stack levels used: 1
+  2187 ;; This function calls:
+  2188 ;;		Nothing
+  2189 ;; This function is called by:
+  2190 ;;		_I2C_SlaveDefRdInterruptHandler
+  2191 ;;		_I2C_SlaveDefAddrInterruptHandler
+  2192 ;;		_I2C_Read
+  2193 ;; This function uses a non-reentrant model
+  2194 ;;
+  2195                           
+  2196                           	psect	text33
+  2197   000410                     __ptext33:
+  2198                           	callstack 0
+  2199   000410                     _I2C_SlaveGetRxData:
+  2200                           	callstack 24
+  2201   000410                     
+  2202                           ;mcc_generated_files/i2c_slave.c: 398:     return SSPBUF;
+  2203   000410  50C9               	movf	201,w,c	;volatile
+  2204   000412  0012               	return		;funcret
+  2205   000414                     __end_of_I2C_SlaveGetRxData:
+  2206                           	callstack 0
+  2207   000000                     
+  2208                           	psect	text34
+  2209   000000                     __ptext34:
+  2210                           	callstack 0
+  2211   000000                     
+  2212                           	psect	rparam
+  2213   000000                     
+  2214                           	psect	temp
+  2215   000019                     btemp:
+  2216                           	callstack 0
+  2217   000019                     	ds	1
+  2218   000000                     int$flags	set	btemp
+  2219   000000                     wtemp8	set	btemp+1
+  2220   000000                     ttemp5	set	btemp+1
+  2221   000000                     ttemp6	set	btemp+4
+  2222   000000                     ttemp7	set	btemp+8
+  2223                           
+  2224                           	psect	config
+  2225                           
+  2226                           ; Padding undefined space
+  2227   300000                     	org	3145728
+  2228   300000  FF                 	db	255
+  2229                           
+  2230                           ;Config register CONFIG1H @ 0x300001
+  2231                           ;	Oscillator Selection bits
+  2232                           ;	FOSC = HS, HS oscillator
+  2233                           ;	Fail-Safe Clock Monitor Enable bit
+  2234                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
+  2235                           ;	Internal/External Oscillator Switchover bit
+  2236                           ;	IESO = OFF, Oscillator Switchover mode disabled
+  2237   300001                     	org	3145729
+  2238   300001  02                 	db	2
+  2239                           
+  2240                           ;Config register CONFIG2L @ 0x300002
+  2241                           ;	Power-up Timer Enable bit
+  2242                           ;	PWRT = OFF, PWRT disabled
+  2243                           ;	Brown-out Reset Enable bits
+  2244                           ;	BOREN = SBORDIS, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+  2245                           ;	Brown Out Reset Voltage bits
+  2246                           ;	BORV = 18, VBOR set to 1.8 V nominal
+  2247   300002                     	org	3145730
+  2248   300002  1F                 	db	31
+  2249                           
+  2250                           ;Config register CONFIG2H @ 0x300003
+  2251                           ;	Watchdog Timer Enable bit
+  2252                           ;	WDTEN = OFF, WDT is controlled by SWDTEN bit of the WDTCON register
+  2253                           ;	Watchdog Timer Postscale Select bits
+  2254                           ;	WDTPS = 32768, 1:32768
+  2255   300003                     	org	3145731
+  2256   300003  1E                 	db	30
+  2257                           
+  2258                           ; Padding undefined space
+  2259   300004                     	org	3145732
+  2260   300004  FF                 	db	255
+  2261                           
+  2262                           ;Config register CONFIG3H @ 0x300005
+  2263                           ;	CCP2 MUX bit
+  2264                           ;	CCP2MX = PORTC, CCP2 input/output is multiplexed with RC1
+  2265                           ;	PORTB A/D Enable bit
+  2266                           ;	PBADEN = ON, PORTB<4:0> pins are configured as analog input channels on Reset
+  2267                           ;	Low-Power Timer1 Oscillator Enable bit
+  2268                           ;	LPT1OSC = OFF, Timer1 configured for higher power operation
+  2269                           ;	HFINTOSC Fast Start-up
+  2270                           ;	HFOFST = ON, HFINTOSC starts clocking the CPU without waiting for the oscillator to st
+      +                          ablize.
+  2271                           ;	MCLR Pin Enable bit
+  2272                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+  2273   300005                     	org	3145733
+  2274   300005  8B                 	db	139
+  2275                           
+  2276                           ;Config register CONFIG4L @ 0x300006
+  2277                           ;	Stack Full/Underflow Reset Enable bit
+  2278                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  2279                           ;	Single-Supply ICSP Enable bit
+  2280                           ;	LVP = ON, Single-Supply ICSP enabled
+  2281                           ;	Extended Instruction Set Enable bit
+  2282                           ;	XINST = OFF, Instruction set extension and Indexed Addressing mode disabled (Legacy mo
+      +                          de)
+  2283                           ;	Background Debugger Enable bit
+  2284                           ;	DEBUG = OFF, Background debugger disabled, RB6 and RB7 configured as general purpose I
+      +                          /O pins
+  2285   300006                     	org	3145734
+  2286   300006  85                 	db	133
+  2287                           
+  2288                           ; Padding undefined space
+  2289   300007                     	org	3145735
+  2290   300007  FF                 	db	255
+  2291                           
+  2292                           ;Config register CONFIG5L @ 0x300008
+  2293                           ;	Code Protection Block 0
+  2294                           ;	CP0 = OFF, Block 0 (000800-003FFFh) not code-protected
+  2295                           ;	Code Protection Block 1
+  2296                           ;	CP1 = OFF, Block 1 (004000-007FFFh) not code-protected
+  2297                           ;	Code Protection Block 2
+  2298                           ;	CP2 = OFF, Block 2 (008000-00BFFFh) not code-protected
+  2299                           ;	Code Protection Block 3
+  2300                           ;	CP3 = OFF, Block 3 (00C000-00FFFFh) not code-protected
+  2301   300008                     	org	3145736
+  2302   300008  0F                 	db	15
+  2303                           
+  2304                           ;Config register CONFIG5H @ 0x300009
+  2305                           ;	Boot Block Code Protection bit
+  2306                           ;	CPB = OFF, Boot block (000000-0007FFh) not code-protected
+  2307                           ;	Data EEPROM Code Protection bit
+  2308                           ;	CPD = OFF, Data EEPROM not code-protected
+  2309   300009                     	org	3145737
+  2310   300009  C0                 	db	192
+  2311                           
+  2312                           ;Config register CONFIG6L @ 0x30000A
+  2313                           ;	Write Protection Block 0
+  2314                           ;	WRT0 = OFF, Block 0 (000800-003FFFh) not write-protected
+  2315                           ;	Write Protection Block 1
+  2316                           ;	WRT1 = OFF, Block 1 (004000-007FFFh) not write-protected
+  2317                           ;	Write Protection Block 2
+  2318                           ;	WRT2 = OFF, Block 2 (008000-00BFFFh) not write-protected
+  2319                           ;	Write Protection Block 3
+  2320                           ;	WRT3 = OFF, Block 3 (00C000h-00FFFFh) not write-protected
+  2321   30000A                     	org	3145738
+  2322   30000A  0F                 	db	15
+  2323                           
+  2324                           ;Config register CONFIG6H @ 0x30000B
+  2325                           ;	Configuration Register Write Protection bit
+  2326                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) not write-protected
+  2327                           ;	Boot Block Write Protection bit
+  2328                           ;	WRTB = OFF, Boot Block (000000-0007FFh) not write-protected
+  2329                           ;	Data EEPROM Write Protection bit
+  2330                           ;	WRTD = OFF, Data EEPROM not write-protected
+  2331   30000B                     	org	3145739
+  2332   30000B  E0                 	db	224
+  2333                           
+  2334                           ;Config register CONFIG7L @ 0x30000C
+  2335                           ;	Table Read Protection Block 0
+  2336                           ;	EBTR0 = OFF, Block 0 (000800-003FFFh) not protected from table reads executed in other
+      +                           blocks
+  2337                           ;	Table Read Protection Block 1
+  2338                           ;	EBTR1 = OFF, Block 1 (004000-007FFFh) not protected from table reads executed in other
+      +                           blocks
+  2339                           ;	Table Read Protection Block 2
+  2340                           ;	EBTR2 = OFF, Block 2 (008000-00BFFFh) not protected from table reads executed in other
+      +                           blocks
+  2341                           ;	Table Read Protection Block 3
+  2342                           ;	EBTR3 = OFF, Block 3 (00C000-00FFFFh) not protected from table reads executed in other
+      +                           blocks
+  2343   30000C                     	org	3145740
+  2344   30000C  0F                 	db	15
+  2345                           
+  2346                           ;Config register CONFIG7H @ 0x30000D
+  2347                           ;	Boot Block Table Read Protection bit
+  2348                           ;	EBTRB = OFF, Boot Block (000000-0007FFh) not protected from table reads executed in ot
+      +                          her blocks
+  2349   30000D                     	org	3145741
+  2350   30000D  40                 	db	64
+  2351                           tosu	equ	0xFFF
+  2352                           tosh	equ	0xFFE
+  2353                           tosl	equ	0xFFD
+  2354                           stkptr	equ	0xFFC
+  2355                           pclatu	equ	0xFFB
+  2356                           pclath	equ	0xFFA
+  2357                           pcl	equ	0xFF9
+  2358                           tblptru	equ	0xFF8
+  2359                           tblptrh	equ	0xFF7
+  2360                           tblptrl	equ	0xFF6
+  2361                           tablat	equ	0xFF5
+  2362                           prodh	equ	0xFF4
+  2363                           prodl	equ	0xFF3
+  2364                           indf0	equ	0xFEF
+  2365                           postinc0	equ	0xFEE
+  2366                           postdec0	equ	0xFED
+  2367                           preinc0	equ	0xFEC
+  2368                           plusw0	equ	0xFEB
+  2369                           fsr0h	equ	0xFEA
+  2370                           fsr0l	equ	0xFE9
+  2371                           wreg	equ	0xFE8
+  2372                           indf1	equ	0xFE7
+  2373                           postinc1	equ	0xFE6
+  2374                           postdec1	equ	0xFE5
+  2375                           preinc1	equ	0xFE4
+  2376                           plusw1	equ	0xFE3
+  2377                           fsr1h	equ	0xFE2
+  2378                           fsr1l	equ	0xFE1
+  2379                           bsr	equ	0xFE0
+  2380                           indf2	equ	0xFDF
+  2381                           postinc2	equ	0xFDE
+  2382                           postdec2	equ	0xFDD
+  2383                           preinc2	equ	0xFDC
+  2384                           plusw2	equ	0xFDB
+  2385                           fsr2h	equ	0xFDA
+  2386                           fsr2l	equ	0xFD9
+  2387                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         17
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           94      7      24
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15           96      0       0
+
+Pointer List with Targets:
+
+    I2C_SlaveSetBusColIntHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_SlaveDefBusColInterruptHandler(), 
+
+    I2C_SlaveBusColInterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_SlaveDefBusColInterruptHandler(), 
+
+    I2C_SlaveSetWrColIntHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_SlaveDefWrColInterruptHandler(), 
+
+    I2C_SlaveWrColInterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_SlaveDefWrColInterruptHandler(), 
+
+    I2C_SlaveSetAddrIntHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_SlaveDefAddrInterruptHandler(), 
+
+    I2C_SlaveAddrInterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_SlaveDefAddrInterruptHandler(), 
+
+    I2C_SlaveSetWriteIntHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_SlaveDefWrInterruptHandler(), 
+
+    I2C_SlaveWrInterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_SlaveDefWrInterruptHandler(), 
+
+    I2C_SlaveSetReadIntHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_SlaveDefRdInterruptHandler(), I2C_Custom_SlaveReadHandler(), 
+
+    I2C_SlaveRdInterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_SlaveDefRdInterruptHandler(), I2C_Custom_SlaveReadHandler(), 
+
+    I2C_SlaveSetIsrHandler@handler	PTR FTN()void  size(2) Largest target is 1
+		 -> I2C_Isr(), 
+
+    MSSP_InterruptHandler	PTR FTN()void  size(2) Largest target is 1
+		 -> NULL(), I2C_Isr(), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_I2C_SlaveSetReadIntHandler
+    _I2C_Open->_I2C_SlaveSetAddrIntHandler
+    _I2C_Open->_I2C_SlaveSetBusColIntHandler
+    _I2C_Open->_I2C_SlaveSetIsrHandler
+    _I2C_Open->_I2C_SlaveSetReadIntHandler
+    _I2C_Open->_I2C_SlaveSetWrColIntHandler
+    _I2C_Open->_I2C_SlaveSetWriteIntHandler
+
+Critical Paths under _INTERRUPT_InterruptManager in COMRAM
+
+    _INTERRUPT_InterruptManager->_I2C_Isr
+    _I2C_SlaveDefWrInterruptHandler->_I2C_SlaveSendTxData
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     868
+                           _I2C_Open
+         _I2C_SlaveSetReadIntHandler
+                  _SYSTEM_Initialize
+ ---------------------------------------------------------------------------------
+ (1) _SYSTEM_Initialize                                    0     0      0       0
+                     _I2C_Initialize
+               _INTERRUPT_Initialize
+              _OSCILLATOR_Initialize
+             _PIN_MANAGER_Initialize
+ ---------------------------------------------------------------------------------
+ (2) _PIN_MANAGER_Initialize                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _OSCILLATOR_Initialize                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _INTERRUPT_Initialize                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _I2C_Initialize                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _I2C_Open                                             0     0      0     694
+                 _I2C_SlaveEnableIrq
+                      _I2C_SlaveOpen
+         _I2C_SlaveSetAddrIntHandler
+       _I2C_SlaveSetBusColIntHandler
+             _I2C_SlaveSetIsrHandler
+         _I2C_SlaveSetReadIntHandler
+              _I2C_SlaveSetSlaveAddr
+              _I2C_SlaveSetSlaveMask
+        _I2C_SlaveSetWrColIntHandler
+        _I2C_SlaveSetWriteIntHandler
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetWriteIntHandler                          2     0      2      98
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetWrColIntHandler                          2     0      2      98
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetSlaveMask                                1     1      0      15
+                                              5 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetSlaveAddr                                1     1      0      15
+                                              5 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _I2C_SlaveSetReadIntHandler                           2     0      2     174
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetIsrHandler                               2     0      2      98
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetBusColIntHandler                         2     0      2      98
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveSetAddrIntHandler                           2     0      2      98
+                                              5 COMRAM     2     0      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveOpen                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _I2C_SlaveEnableIrq                                   0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _INTERRUPT_InterruptManager                           2     2      0      15
+                                              3 COMRAM     2     2      0
+                                NULL *
+                            _I2C_Isr *
+ ---------------------------------------------------------------------------------
+ (4) _I2C_Isr                                              2     2      0      15
+                                              1 COMRAM     2     2      0
+              _I2C_SlaveAddrCallBack
+                  _I2C_SlaveClearIrq
+                    _I2C_SlaveIsAddr
+                    _I2C_SlaveIsRead
+               _I2C_SlaveIsRxBufFull
+              _I2C_SlaveIsTxBufEmpty
+                _I2C_SlaveRdCallBack
+              _I2C_SlaveReleaseClock
+                _I2C_SlaveWrCallBack
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveWrCallBack                                  0     0      0      15
+                                NULL *
+     _I2C_SlaveDefWrInterruptHandler *
+ ---------------------------------------------------------------------------------
+ (6) _I2C_SlaveDefWrInterruptHandler                       0     0      0      15
+                _I2C_SlaveSendTxData
+ ---------------------------------------------------------------------------------
+ (7) _I2C_SlaveSendTxData                                  1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveReleaseClock                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveRdCallBack                                  0     0      0       0
+                                NULL *
+        _I2C_Custom_SlaveReadHandler *
+     _I2C_SlaveDefRdInterruptHandler *
+ ---------------------------------------------------------------------------------
+ (6) _I2C_SlaveDefRdInterruptHandler                       0     0      0       0
+                 _I2C_SlaveGetRxData
+ ---------------------------------------------------------------------------------
+ (6) _I2C_Custom_SlaveReadHandler                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveIsTxBufEmpty                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveIsRxBufFull                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveIsRead                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveIsAddr                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveClearIrq                                    0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _I2C_SlaveAddrCallBack                                0     0      0       0
+                                NULL *
+   _I2C_SlaveDefAddrInterruptHandler *
+ ---------------------------------------------------------------------------------
+ (6) _I2C_SlaveDefAddrInterruptHandler                     0     0      0       0
+                 _I2C_SlaveGetRxData
+ ---------------------------------------------------------------------------------
+ (7) _I2C_SlaveGetRxData                                   0     0      0       0
+ ---------------------------------------------------------------------------------
+ (6) NULL(Fake)                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 7
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _I2C_Open
+     _I2C_SlaveEnableIrq
+     _I2C_SlaveOpen
+     _I2C_SlaveSetAddrIntHandler
+     _I2C_SlaveSetBusColIntHandler
+     _I2C_SlaveSetIsrHandler
+     _I2C_SlaveSetReadIntHandler
+     _I2C_SlaveSetSlaveAddr
+     _I2C_SlaveSetSlaveMask
+     _I2C_SlaveSetWrColIntHandler
+     _I2C_SlaveSetWriteIntHandler
+   _I2C_SlaveSetReadIntHandler
+   _SYSTEM_Initialize
+     _I2C_Initialize
+     _INTERRUPT_Initialize
+     _OSCILLATOR_Initialize
+     _PIN_MANAGER_Initialize
+
+ _INTERRUPT_InterruptManager (ROOT)
+   NULL(Fake) *
+   _I2C_Isr *
+     _I2C_SlaveAddrCallBack
+       NULL(Fake) *
+       _I2C_SlaveDefAddrInterruptHandler *
+         _I2C_SlaveGetRxData
+     _I2C_SlaveClearIrq
+     _I2C_SlaveIsAddr
+     _I2C_SlaveIsRead
+     _I2C_SlaveIsRxBufFull
+     _I2C_SlaveIsTxBufEmpty
+     _I2C_SlaveRdCallBack
+       NULL(Fake) *
+       _I2C_Custom_SlaveReadHandler *
+       _I2C_SlaveDefRdInterruptHandler *
+         _I2C_SlaveGetRxData
+     _I2C_SlaveReleaseClock
+     _I2C_SlaveWrCallBack
+       NULL(Fake) *
+       _I2C_SlaveDefWrInterruptHandler *
+         _I2C_SlaveSendTxData
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F5F      0       0      50        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK15           60      0       0      34        0.0%
+BANK15              60      0       0      35        0.0%
+BITCOMRAM           5E      0       0       0        0.0%
+COMRAM              5E      7      18       1       25.5%
+BITBIGSFRlhlhhh     23      0       0      40        0.0%
+BITBIGSFRlhhh       1D      0       0      37        0.0%
+BITBIGSFRllllll     17      0       0      48        0.0%
+BITBIGSFRh           D      0       0      36        0.0%
+BITBIGSFRlllh        9      0       0      45        0.0%
+BITBIGSFRlhhll       6      0       0      39        0.0%
+BITBIGSFRlllllh      4      0       0      47        0.0%
+BITBIGSFRlhlhhl      4      0       0      43        0.0%
+BITBIGSFRlhlhll      4      0       0      44        0.0%
+BITBIGSFRlhhlh       2      0       0      38        0.0%
+BITBIGSFRlhlhhh      1      0       0      41        0.0%
+BITBIGSFRlhlhhh      1      0       0      42        0.0%
+BITBIGSFRllllh       1      0       0      46        0.0%
+BIGSFR               0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      18      49        0.0%
+DATA                 0      0      18       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.41 build 20230208172133 
+Symbol Table                                                                                   Tue Nov 21 12:41:44 2023
+
+                             _SSPSTATbits 0FC7                                        l40 0214  
+                                      l42 0216                                        l35 020C  
+                                      l37 020E                                        l82 024E  
+                                      u10 02E8                                        u11 02E4  
+                                     l112 0372                                       l115 038C  
+                                     l220 0382                                       l223 01E2  
+                                     l320 02F6                                       l332 0406  
+                                     l404 0402                                       l309 03BE  
+                                     l326 03D8                                       l329 03D0  
+                                     l266 03B4                                       l269 03AA  
+                                     l279 0396                                       l289 03C8  
+                                     l299 03A0      __end_of_I2C_SlaveSetBusColIntHandler 03C0  
+            _I2C_SlaveSetBusColIntHandler 03B6                                       u310 020C  
+                                     u311 0208                     ??_I2C_SlaveRdCallBack 0012  
+                     _I2C_SlaveSendTxData 03E2             I2C_SlaveSetSlaveMask@maskAddr 0017  
+                         __end_of_I2C_Isr 0186                                       tosl 0FFD  
+                                     wreg 0FE8                       _I2C_SlaveWrCallBack 0250  
+                                    l1111 023A                                      l1121 0374  
+                                    l1113 0240                                      l1131 02DA  
+                                    l1123 0378                                      l1115 0242  
+                                    l1107 0220                                      l1133 02E8  
+                                    l1125 037C                                      l1117 024C  
+                                    l1109 0238                                      l1135 02EC  
+                                    l1143 03D4                                      l1127 0380  
+                                    l1119 0400                                      l1137 02F0  
+                                    l1145 03CC                                      l1129 0384  
+                                    l1139 02F4                                      l1331 03A2  
+                                    l1157 0404                                      l1333 03AC  
+                                    l1341 0398                                      l1335 03B6  
+                                    l1343 0186                                      l1191 0362  
+                                    l1351 01E4                                      l1337 038E  
+                                    l1345 018A                                      l1193 0366  
+                                    l1353 01E8                                      l1339 03C0  
+                                    l1347 0190                                      l1195 036A  
+                                    l1355 01EA                                      l1349 01DE  
+                                    l1197 036E                                      l1357 01FC  
+                                    _LATA 0F89                                      _LATB 0F8A  
+                                    _LATC 0F8B                                      _LATD 0F8C  
+                                    _LATE 0F8D                                      i2l49 03FE  
+                                    _WPUB 0F7C                   __end_of_I2C_SlaveIsAddr 0362  
+                 __end_of_I2C_SlaveIsRead 034E                                      _main 01E4  
+       I2C_SlaveSetAddrIntHandler@handler 0017                          __end_of_I2C_Open 01E4  
+                                    btemp 0019                      ?_I2C_SlaveSendTxData 0012  
+                                    start 0086                      ?_I2C_SlaveWrCallBack 0012  
+                            ___param_bank 0000         I2C_SlaveSetReadIntHandler@handler 0017  
+           __end_of_I2C_SlaveAddrCallBack 02DA             __end_of_OSCILLATOR_Initialize 038E  
+     fp__I2C_SlaveDefAddrInterruptHandler 0000  __end_of_I2C_SlaveDefAddrInterruptHandler 03FA  
+      ??_I2C_SlaveDefAddrInterruptHandler 0012         ?_I2C_SlaveDefAddrInterruptHandler 0012  
+        _I2C_SlaveDefAddrInterruptHandler 03F2                                     ?_main 0012  
+                                   _ANSEL 0F7E                                     i2l410 005A  
+                                   i2l411 007A                                     i2l341 040E  
+                                   i2l335 0360                                     i2l263 0184  
+                                   i2l415 007A                                     i2l344 040A  
+                                   i2l273 02AA                                     i2l338 034C  
+                                   i2l362 03E8                                     i2l283 027C  
+                                   i2l356 0324                                     i2l276 03F0  
+                                   i2l365 0412                                     i2l293 02D8  
+                                   i2l286 03E0                                     i2l359 0338  
+                                   i2l296 03F8                     _I2C_SlaveReleaseClock 0408  
+                                   _TRISA 0F92                                     _TRISB 0F93  
+                                   _TRISC 0F94                                     _TRISD 0F95  
+                                   _TRISE 0F96             ?_I2C_SlaveSetBusColIntHandler 0017  
+                  ??_I2C_SlaveIsRxBufFull 0012                                     pclath 0FFA  
+                                   pclatu 0FFB                                     ttemp5 001A  
+                                   ttemp6 001D                                     ttemp7 0021  
+                                   status 0FD8                                     wtemp8 001A  
+                   ??_I2C_SlaveSendTxData 0012                     ??_I2C_SlaveWrCallBack 0013  
+                   _I2C_SlaveSetSlaveAddr 03D2                           __initialization 02F8  
+                   _I2C_SlaveSetSlaveMask 03CA                              __end_of_main 0220  
+     __end_of_I2C_Custom_SlaveReadHandler 0400               _I2C_Custom_SlaveReadHandler 03FA  
+             ?_INTERRUPT_InterruptManager 0012                                 ??_I2C_Isr 0013  
+                                  ??_main 0019                             __activetblptr 0002  
+           ??_I2C_Custom_SlaveReadHandler 0012               _I2C_SlaveRdInterruptHandler 0009  
+             _I2C_SlaveWrInterruptHandler 0007                __end_of_I2C_SlaveEnableIrq 0408  
+              __end_of_I2C_SlaveGetRxData 0414                                    _ANSELH 0F7F  
+                                  i2l1101 03DA                                    i2l1103 03F2  
+                                  i2l1211 00A2                                    i2l1221 00E2  
+                                  i2l1213 00B6                                    i2l1231 0112  
+                                  i2l1223 00EA                                    i2l1215 00BE  
+                                  i2l1207 008A                                    i2l1225 00EE  
+                                  i2l1241 0146                                    i2l1217 00C6  
+                                  i2l1209 008E                                    i2l1321 003C  
+                                  i2l1091 0410                                    i2l1171 02BE  
+                                  i2l1163 040C                                    i2l1235 012A  
+                                  i2l1227 0102                                    i2l1243 0180  
+                                  i2l1219 00DA                                    i2l1323 0068  
+                                  i2l1315 0012                                    i2l1165 034E  
+                                  i2l1181 0326                                    i2l1173 0312  
+                                  i2l1237 013E                                    i2l1229 010A  
+                                  i2l1317 0020                                    i2l1159 033A  
+                                  i2l1095 03E4                                    i2l1319 002E  
+                                  i2l1169 02AC                                    i2l1097 03FA  
+                                  i2l1185 027E                                    i2l1177 0250  
+                                  i2l1099 03EA                                    i2l1187 0290  
+                                  i2l1179 0262                                    i2l1363 015A  
+                                  i2l1189 0408                                    _OSCCON 0FD3  
+                        ?_I2C_SlaveIsAddr 0012                                    i2u2_40 034A  
+                                  i2u2_41 0344                                    i2u2_46 034C  
+                                  i2u3_40 035E                                    i2u3_41 0358  
+                                  i2u4_40 0360                                    i2u5_40 02BE  
+                                  i2u5_41 02BA                                    i2u6_48 02C4  
+                                  i2u7_40 0322                                    i2u6_49 02D8  
+                                  i2u7_41 031C                                    _SSPADD 0FC8  
+                        ?_I2C_SlaveIsRead 0012                                    i2u8_40 0324  
+                                  i2u9_40 0262                                    i2u9_41 025E  
+                                  _SSPBUF 0FC9                                    _SSPMSK 0F77  
+                  _I2C_SlaveSetIsrHandler 03AC                                    clear_0 02FE  
+                                  isa$std 0001                    ?_I2C_SlaveReleaseClock 0012  
+                 ??_I2C_SlaveIsTxBufEmpty 0012                                 ?_I2C_Open 0012  
+     I2C_SlaveSetBusColIntHandler@handler 0017                                    tblptru 0FF8  
+                           _I2C_SlaveOpen 02DA                         _SYSTEM_Initialize 0362  
+                              __accesstop 0060                   __end_of__initialization 0304  
+      I2C_SlaveSetWrColIntHandler@handler 0017              ??_I2C_SlaveSetAddrIntHandler 0019  
+                      ?_SYSTEM_Initialize 0012                             ___rparam_used 0001  
+                  ?_I2C_SlaveSetSlaveAddr 0012                    ?_I2C_SlaveSetSlaveMask 0012  
+                          __pcstackCOMRAM 0012                       ??_SYSTEM_Initialize 0017  
+          I2C_SlaveSetSlaveAddr@slaveAddr 0017              ??_I2C_SlaveSetReadIntHandler 0019  
+                              ??_I2C_Open 0019                            ?_I2C_SlaveOpen 0012  
+               __end_of_SYSTEM_Initialize 0374       __end_of_I2C_SlaveSetWrColIntHandler 03A2  
+             _I2C_SlaveSetWrColIntHandler 0398               __end_of_I2C_SlaveRdCallBack 02AC  
+           ??_I2C_SlaveSetWrColIntHandler 0019                                   _I2C_Isr 008A  
+                                 i2u11_40 0336                                   i2u10_48 0268  
+                                 i2u11_41 0330                                   i2u10_49 027C  
+                                 i2u11_46 0338                                   i2u12_40 0290  
+                                 i2u12_41 028C                                   i2u13_48 0296  
+                                 i2u14_40 00A2                                   i2u30_40 0076  
+                                 i2u13_49 02AA                                   i2u14_41 009E  
+                                 i2u30_41 0072                                   i2u15_40 00B6  
+                                 i2u15_41 00B2                                   i2u16_40 00DA  
+                                 i2u16_41 00D6                                   i2u17_40 0102  
+                                 i2u25_40 0020                                   i2u17_41 00FE  
+                                 i2u25_41 001C                                   i2u18_40 0126  
+                                 i2u26_40 002E                                   i2u18_41 0122  
+                                 i2u26_41 002A                                   i2u19_40 013E  
+                                 i2u27_40 003C                                   i2u19_41 013A  
+                                 i2u27_41 0038                                   i2u29_40 0068  
+                                 i2u28_48 0042                                   i2u29_41 0064  
+                                 i2u28_49 0056                                   _OSCTUNE 0F9B  
+                                 _SSPCON1 0FC6                                   _SSPCON2 0FC5  
+                                 _SSPSTAT 0FC7            fp__I2C_Custom_SlaveReadHandler 0000  
+                                 __Hparam 0000                                   __Lparam 0000  
+                 I2C_SlaveSendTxData@data 0012                     _I2C_SlaveAddrCallBack 02AC  
+                                 __pcinit 02F8                            _I2C_Initialize 0374  
+                                 __ramtop 1000                                   __ptext0 01E4  
+                                 __ptext1 0362                                   __ptext2 0220  
+                                 __ptext3 0384                                   __ptext4 0400  
+                                 __ptext5 0374                                   __ptext6 0186  
+                                 __ptext7 038E                                   __ptext8 0398  
+                                 __ptext9 03CA                                fp__I2C_Isr 0000  
+                         ??_I2C_SlaveOpen 0017                     _OSCILLATOR_Initialize 0384  
+                ??_PIN_MANAGER_Initialize 0017             I2C_SlaveSetIsrHandler@handler 0017  
+             __end_of_I2C_SlaveSendTxData 03EA                      end_of_initialization 0304  
+             __end_of_I2C_SlaveWrCallBack 027E        __end_of_I2C_SlaveSetAddrIntHandler 03CA  
+              _I2C_SlaveSetAddrIntHandler 03C0                             __Lmediumconst 0000  
+                      _I2C_SlaveEnableIrq 0404                        _I2C_SlaveGetRxData 0410  
+                 ?_I2C_SlaveSetIsrHandler 0017                              _i2cSlaveAddr 000E  
+                                 postinc0 0FEE                    __end_of_I2C_Initialize 0384  
+                 ??_I2C_SlaveReleaseClock 0012                       ?_I2C_SlaveEnableIrq 0012  
+                     ?_I2C_SlaveGetRxData 0012        __end_of_I2C_SlaveSetReadIntHandler 03AC  
+              _I2C_SlaveSetReadIntHandler 03A2              ?_I2C_SlaveSetWriteIntHandler 0017  
+           __end_of_I2C_SlaveIsTxBufEmpty 0326                      ??_I2C_SlaveEnableIrq 0017  
+                    ??_I2C_SlaveGetRxData 0012                   ??_I2C_SlaveSetSlaveAddr 0017  
+                 ??_I2C_SlaveSetSlaveMask 0017            __end_of_I2C_SlaveSetIsrHandler 03B6  
+                  ?_I2C_SlaveAddrCallBack 0012              __end_of_INTERRUPT_Initialize 0404  
+                         ?_I2C_Initialize 0012                          _receive_temp_val 0011  
+                               _i2cRdData 000F                    ?_OSCILLATOR_Initialize 0012  
+                               _i2cWrData 0010                       start_initialization 02F8  
+                                ?_I2C_Isr 0012                               __pbssCOMRAM 0001  
+          ??_I2C_SlaveSetBusColIntHandler 0019                    _PIN_MANAGER_Initialize 0220  
+                               __pintcode 0008              ?_I2C_Custom_SlaveReadHandler 0012  
+            ??_INTERRUPT_InterruptManager 0015                         ??_I2C_SlaveIsAddr 0012  
+                       ??_I2C_SlaveIsRead 0012         fp__I2C_SlaveDefRdInterruptHandler 0000  
+        ??_I2C_SlaveDefRdInterruptHandler 0012           ?_I2C_SlaveDefRdInterruptHandler 0012  
+       fp__I2C_SlaveDefWrInterruptHandler 0000          ??_I2C_SlaveDefWrInterruptHandler 0013  
+         ?_I2C_SlaveDefWrInterruptHandler 0012                                  _I2C_Open 0186  
+                    _INTERRUPT_Initialize 0400               ?_I2C_SlaveSetAddrIntHandler 0017  
+                                _LATCbits 0F8B                                  _PIE1bits 0F9D  
+                                _PIE2bits 0FA0                         _I2C_SlaveClearIrq 040C  
+                                _PIR1bits 0F9E                                  _PIR2bits 0FA1  
+                      ?_I2C_SlaveClearIrq 0012                                  _RCONbits 0FD0  
+            __end_of_I2C_SlaveIsRxBufFull 033A               ?_I2C_SlaveSetReadIntHandler 0017  
+           __end_of_I2C_SlaveReleaseClock 040C                       ??_I2C_SlaveClearIrq 0012  
+                   __end_of_I2C_SlaveOpen 02F8                               _INTCON2bits 0FF1  
+                   ?_INTERRUPT_Initialize 0012         _I2C_SlaveDefWrColInterruptHandler 0000  
+               __end_of_I2C_SlaveClearIrq 0410             __end_of_I2C_SlaveSetSlaveAddr 03DA  
+           __end_of_I2C_SlaveSetSlaveMask 03D2                          ??_I2C_Initialize 0017  
+                 ??_I2C_SlaveAddrCallBack 0012                                  __Hrparam 0000  
+                                __Lrparam 0000                   ??_OSCILLATOR_Initialize 0017  
+           _I2C_SlaveAddrInterruptHandler 0005        _I2C_SlaveDefBusColInterruptHandler 0000  
+          _I2C_SlaveWrColInterruptHandler 0001                                  __ptext10 03D2  
+                                __ptext11 03A2                                  __ptext20 03DA  
+                                __ptext12 03AC                                  __ptext21 03E2  
+                                __ptext13 03B6                                  __ptext30 040C  
+                                __ptext22 0408                                  __ptext14 03C0  
+                                __ptext31 02AC                                  __ptext23 027E  
+                                __ptext15 02DA                                  __ptext32 03F2  
+                                __ptext24 03FA                                  __ptext16 0404  
+                                __ptext33 0410                                  __ptext25 03EA  
+                                __ptext34 0000                                  __ptext26 0312  
+                                __ptext18 008A                                  __ptext27 0326  
+                                __ptext19 0250                                  __ptext28 033A  
+                                __ptext29 034E                     _I2C_SlaveIsTxBufEmpty 0312  
+            ?_I2C_SlaveSetWrColIntHandler 0017                                  isa$xinst 0000  
+                                int$flags 0019        __end_of_INTERRUPT_InterruptManager 0086  
+              _INTERRUPT_InterruptManager 0008                                _INTCONbits 0FF2  
+                  ??_INTERRUPT_Initialize 0017                      _I2C_SlaveIsRxBufFull 0326  
+                                intlevel2 0000           _I2C_SlaveBusColInterruptHandler 0003  
+                 ?_PIN_MANAGER_Initialize 0012                       _I2C_SlaveRdCallBack 027E  
+                         _I2C_SlaveIsAddr 034E                           _I2C_SlaveIsRead 033A  
+                           _i2cSlaveState 000D        I2C_SlaveSetWriteIntHandler@handler 0017  
+     __end_of_I2C_SlaveSetWriteIntHandler 0398               _I2C_SlaveSetWriteIntHandler 038E  
+                    ?_I2C_SlaveRdCallBack 0012                    ?_I2C_SlaveIsTxBufEmpty 0012  
+           ??_I2C_SlaveSetWriteIntHandler 0019                               _SSPCON1bits 0FC6  
+                             _SSPCON2bits 0FC5                  ??_I2C_SlaveSetIsrHandler 0019  
+                   ?_I2C_SlaveIsRxBufFull 0012            __end_of_PIN_MANAGER_Initialize 0250  
+  __end_of_I2C_SlaveDefRdInterruptHandler 03F2            _I2C_SlaveDefRdInterruptHandler 03EA  
+  __end_of_I2C_SlaveDefWrInterruptHandler 03E2            _I2C_SlaveDefWrInterruptHandler 03DA  
+                   _MSSP_InterruptHandler 000B  
